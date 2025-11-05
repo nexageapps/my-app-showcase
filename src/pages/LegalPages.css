@@ -1,0 +1,259 @@
+/* Legal Pages Styling */
+.legal-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%);
+  padding: 3rem 1.5rem;
+}
+
+.legal-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.legal-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 3rem 2rem;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.legal-header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.legal-subtitle {
+  font-size: 1.25rem;
+  color: #4a5568;
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+}
+
+.legal-date {
+  font-size: 0.9375rem;
+  color: #718096;
+  margin: 0;
+}
+
+.legal-content {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.legal-section {
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.legal-section:last-child {
+  margin-bottom: 0;
+}
+
+.section-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.legal-section h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 1rem 0;
+}
+
+.legal-section p {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: #4a5568;
+  margin: 0 0 1rem 0;
+}
+
+.legal-section p:last-child {
+  margin-bottom: 0;
+}
+
+.legal-section strong {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.legal-section a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.legal-section a:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.feature-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.feature-item .check {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  flex-shrink: 0;
+  font-size: 1.125rem;
+}
+
+.feature-item strong {
+  display: block;
+  font-size: 1.125rem;
+  margin-bottom: 0.25rem;
+  color: #2d3748;
+}
+
+.feature-item p {
+  margin: 0;
+  font-size: 1rem;
+  color: #718096;
+}
+
+.simple-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.simple-list li {
+  padding-left: 2rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: #4a5568;
+}
+
+.simple-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #667eea;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.note {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border-left: 4px solid #667eea;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  font-size: 1rem;
+}
+
+.legal-footer {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.legal-footer p {
+  font-size: 1.125rem;
+  color: #2d3748;
+  margin: 0;
+  line-height: 1.7;
+}
+
+.back-home {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.back-home a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+}
+
+.back-home a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+  .legal-page {
+    padding: 2rem 1rem;
+  }
+  
+  .legal-header {
+    padding: 2rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .legal-header h1 {
+    font-size: 2rem;
+  }
+  
+  .legal-subtitle {
+    font-size: 1.0625rem;
+  }
+  
+  .legal-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .section-icon {
+    font-size: 2.5rem;
+  }
+  
+  .legal-section h2 {
+    font-size: 1.5rem;
+  }
+  
+  .legal-section p {
+    font-size: 1rem;
+  }
+  
+  .feature-item {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .simple-list li {
+    font-size: 1rem;
+  }
+}

@@ -1,8 +1,8 @@
 .gallery {
   width: 100%;
   display: grid;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  gap: 1rem;
+  margin-bottom: 0;
 }
 
 /* Single image layout - full width */
@@ -17,8 +17,9 @@
 
 /* Three images layout - primary left, two stacked right */
 .gallery3 {
-  grid-template-columns: 60% 1fr;
+  grid-template-columns: 55% 1fr;
   grid-template-rows: 1fr 1fr;
+  gap: 1rem;
 }
 
 .gallery3 .imageWrapper:first-child {
@@ -28,19 +29,19 @@
 .imageWrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 9 / 16;
   overflow: hidden;
-  border-radius: 8px;
-  background-color: #f0f0f0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
+  object-fit: contain;
+  border-radius: 16px;
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  /* Performance optimization */
   will-change: opacity;
   backface-visibility: hidden;
 }
@@ -51,7 +52,7 @@
 
 .image.loaded {
   opacity: 1;
-  will-change: auto; /* Remove will-change after load to free resources */
+  will-change: auto;
 }
 
 /* Placeholder styling with gradient */
@@ -62,7 +63,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 16px;
 }
 
 .placeholderIcon {
@@ -83,7 +84,7 @@
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 8px;
+  border-radius: 16px;
 }
 
 .spinner {
@@ -122,51 +123,82 @@
   }
   
   .gallery {
-    gap: 0.75rem; /* Better spacing on mobile */
+    gap: 0.875rem;
+  }
+  
+  .imageWrapper {
+    border-radius: 12px;
+  }
+  
+  .image {
+    border-radius: 12px;
+  }
+  
+  .placeholder {
+    border-radius: 12px;
+  }
+  
+  .loadingPlaceholder {
+    border-radius: 12px;
   }
 }
 
 /* Ensure adequate touch targets for any interactive images */
 @media (max-width: 767px) {
   .imageWrapper {
-    min-height: 44px; /* Minimum touch target */
+    min-height: 44px;
   }
 }
 
 /* Tablet layout - maintain side-by-side for 2 and 3 images */
 @media (min-width: 768px) and (max-width: 1023px) {
   .gallery {
-    gap: 0.625rem;
-    margin-bottom: 1.25rem;
+    gap: 1rem;
   }
   
   .imageWrapper {
-    aspect-ratio: 16 / 9; /* Maintain consistent aspect ratio */
+    aspect-ratio: 9 / 16;
+    border-radius: 14px;
+  }
+  
+  .image {
+    border-radius: 14px;
+  }
+  
+  .placeholder {
+    border-radius: 14px;
+  }
+  
+  .loadingPlaceholder {
+    border-radius: 14px;
   }
 }
 
 /* Desktop layout - optimal image presentation */
 @media (min-width: 1024px) {
   .gallery {
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
+    gap: 1.25rem;
   }
   
   .imageWrapper {
-    aspect-ratio: 16 / 9;
-    border-radius: 10px; /* Slightly larger radius on desktop */
+    aspect-ratio: 9 / 16;
+    border-radius: 18px;
   }
   
   .image {
-    border-radius: 10px;
+    border-radius: 18px;
   }
   
   .placeholder {
-    border-radius: 10px;
+    border-radius: 18px;
+  }
+  
+  .loadingPlaceholder {
+    border-radius: 18px;
   }
   
   .placeholderIcon {
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 4rem;
+    height: 4rem;
   }
 }
