@@ -142,7 +142,7 @@
     - _Requirements: 1.5, 6.3_
 
 - [ ]* 11. Testing and validation
-  - [ ]* 11.1 Write component tests
+  - [ ] 11.1 Write component tests
     - Test AppCard renders correctly with app data
     - Test ImageGallery handles different image counts
     - Test FeatureList renders all features
