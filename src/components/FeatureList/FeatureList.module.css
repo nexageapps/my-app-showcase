@@ -1,0 +1,81 @@
+/* Visually hidden heading for accessibility - maintains heading hierarchy */
+.featuresHeading {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.featureItem {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.8;
+  font-size: 0.95rem;
+  color: #4a5568;
+}
+
+/* Custom checkmark bullet */
+.featureItem::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #667eea;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Ensure readability on mobile - minimum 14px (0.875rem) */
+@media (max-width: 767px) {
+  .featureItem {
+    font-size: 0.9375rem; /* 15px - above minimum requirement */
+    line-height: 1.8;
+    padding-left: 2rem; /* Increase touch target area */
+    margin-bottom: 0.75rem; /* Better spacing for touch */
+  }
+  
+  .featureItem::before {
+    font-size: 1.2rem;
+    /* Ensure checkmark has adequate touch target */
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Tablet styles - optimize readability */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .featureItem {
+    font-size: 0.9375rem; /* 15px */
+    line-height: 1.8;
+    margin-bottom: 0.625rem;
+  }
+}
+
+/* Desktop styles - full size for optimal readability */
+@media (min-width: 1024px) {
+  .featureItem {
+    font-size: 0.95rem; /* 15.2px */
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+    padding-left: 1.75rem;
+  }
+  
+  .featureItem::before {
+    font-size: 1.1rem;
+  }
+}

@@ -1,19 +1,22 @@
 import './App.css';
 import { apps } from './data/apps';
+import Header from './components/Header/Header';
+import AppCard from './components/AppCard/AppCard';
 
 function App() {
   return (
     <div className="App">
-      <div className="container">
-        <div className="apps-grid">
-          {apps.map((app) => (
-            <div key={app.id} className="app-card-placeholder">
-              <h2>{app.name}</h2>
-              <p>{app.tagline}</p>
-            </div>
+      <Header 
+        title="App Showcase" 
+        subtitle="Discover our amazing mobile applications"
+      />
+      <main className="container">
+        <div className="apps-grid" role="list" aria-label="Mobile applications showcase">
+          {apps.map((app, index) => (
+            <AppCard key={app.id} app={app} index={index} />
           ))}
         </div>
-      </div>
+      </main>
     </div>
   );
 }

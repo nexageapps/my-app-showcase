@@ -20,24 +20,70 @@
   font-weight: 400;
 }
 
-/* Mobile responsive styles */
+/* Mobile responsive styles - ensure readability */
 @media (max-width: 767px) {
   .header {
     padding: 2rem 1rem 1.5rem;
   }
 
   .title {
-    font-size: 2rem;
+    font-size: 2rem; /* 32px */
+    line-height: 1.2;
   }
 
   .subtitle {
-    font-size: 1rem;
+    font-size: 1rem; /* 16px - well above 14px minimum */
+    line-height: 1.5;
   }
 }
 
-/* Tablet styles */
-@media (min-width: 768px) and (max-width: 1023px) {
+/* Extra small mobile devices */
+@media (max-width: 374px) {
+  .header {
+    padding: 1.5rem 0.75rem 1rem;
+  }
+  
   .title {
-    font-size: 2.5rem;
+    font-size: 1.75rem; /* 28px */
+  }
+  
+  .subtitle {
+    font-size: 0.9375rem; /* 15px - still above minimum */
+  }
+}
+
+/* Tablet styles - balanced sizing */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .header {
+    padding: 2.5rem 1.5rem 2rem;
+  }
+  
+  .title {
+    font-size: 2.5rem; /* 40px */
+    line-height: 1.2;
+  }
+  
+  .subtitle {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.5;
+  }
+}
+
+/* Desktop styles - full size typography */
+@media (min-width: 1024px) {
+  .header {
+    padding: 3rem 2rem 2.5rem;
+  }
+  
+  .title {
+    font-size: 3rem; /* 48px - full hero size */
+    line-height: 1.2;
+  }
+  
+  .subtitle {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto; /* Center subtitle for visual balance */
   }
 }

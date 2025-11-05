@@ -49,12 +49,22 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Performance optimization - enable GPU acceleration for smooth scrolling */
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 /* App Container */
 .App {
   min-height: 100vh;
   padding: var(--spacing-lg);
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 767px) {
+  .App {
+    padding: var(--spacing-sm);
+  }
 }
 
 /* Main Container with Max-Width and Centering */
@@ -69,6 +79,8 @@ body {
   display: grid;
   gap: var(--spacing-lg);
   grid-template-columns: 1fr;
+  /* Performance optimization - contain layout changes */
+  contain: layout style;
 }
 
 /* Placeholder styling for app cards (temporary until AppCard component is built) */
@@ -91,24 +103,58 @@ body {
   color: var(--color-text-secondary);
 }
 
-/* Tablet Layout (768px - 1024px) */
+/* Tablet Layout (768px - 1024px) - Two column grid */
 @media (min-width: 768px) {
   .apps-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg); /* 2rem gap for better spacing */
+  }
+  
+  .App {
+    padding: var(--spacing-lg);
   }
 }
 
-/* Desktop Layout (> 1024px) */
+/* Optimize for larger tablets */
+@media (min-width: 900px) and (max-width: 1023px) {
+  .apps-grid {
+    gap: 2.5rem; /* Slightly larger gap on bigger tablets */
+  }
+}
+
+/* Desktop Layout (> 1024px) - Two column for better readability */
 @media (min-width: 1024px) {
   .apps-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem; /* Generous spacing on desktop */
+  }
+  
+  .App {
+    padding: var(--spacing-xl); /* More padding on desktop */
+  }
+  
+  .container {
+    max-width: 1400px; /* Enforce max-width constraint */
+    margin: 0 auto; /* Center container */
   }
 }
 
-/* Extra Large Desktop Layout (> 1280px) */
+/* Extra Large Desktop Layout (> 1280px) - Three columns for wide screens */
 @media (min-width: 1280px) {
   .apps-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; /* Balanced gap for 3 columns */
+  }
+}
+
+/* Ultra-wide screens - maintain max-width and visual balance */
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1400px; /* Keep content centered and readable */
+  }
+  
+  .apps-grid {
+    gap: 2.5rem;
   }
 }
 
