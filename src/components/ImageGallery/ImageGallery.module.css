@@ -117,6 +117,12 @@
     grid-row: auto;
   }
   
+  /* Show only first image on mobile */
+  .gallery2 .imageWrapper:not(:first-child),
+  .gallery3 .imageWrapper:not(:first-child) {
+    display: none;
+  }
+  
   .placeholderIcon {
     width: 2.5rem;
     height: 2.5rem;

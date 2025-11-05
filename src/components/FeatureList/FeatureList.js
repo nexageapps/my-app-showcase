@@ -8,15 +8,15 @@ const FeatureList = ({ features, appId }) => {
   }
 
   return (
-    <section aria-labelledby={`features-heading-${appId}`}>
+    <section aria-labelledby={`features-heading-${appId}`} className={styles.featuresSection}>
       <h3 id={`features-heading-${appId}`} className={styles.featuresHeading}>Features</h3>
-      <ul className={styles.featureList} aria-label="App features">
+      <div className={styles.featureBadges} aria-label="App features">
         {features.map((feature, index) => (
-          <li key={index} className={styles.featureItem}>
+          <span key={index} className={styles.featureBadge}>
             {feature}
-          </li>
+          </span>
         ))}
-      </ul>
+      </div>
     </section>
   );
 };

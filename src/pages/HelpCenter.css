@@ -1,0 +1,169 @@
+/* Help Center Page Styling */
+.help-center-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%);
+  padding: 3rem 1.5rem;
+}
+
+.help-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.help-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 3rem 2rem;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.help-header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.help-subtitle {
+  font-size: 1.25rem;
+  color: #4a5568;
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+}
+
+.help-description {
+  font-size: 1rem;
+  color: #718096;
+  margin: 0;
+}
+
+.help-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.help-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2rem;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 2px solid transparent;
+}
+
+.help-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+.help-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.help-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 0.5rem 0;
+}
+
+.help-card .help-description {
+  font-size: 1rem;
+  color: #718096;
+  margin: 0 0 1rem 0;
+  flex-grow: 1;
+}
+
+.help-arrow {
+  font-size: 1.5rem;
+  color: #667eea;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.help-card:hover .help-arrow {
+  transform: translateX(8px);
+}
+
+.help-contact {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.help-contact h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+}
+
+.help-contact p {
+  font-size: 1.125rem;
+  margin: 0 0 2rem 0;
+  opacity: 0.95;
+}
+
+.contact-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: white;
+  color: #667eea;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.contact-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+  .help-center-page {
+    padding: 2rem 1rem;
+  }
+  
+  .help-header {
+    padding: 2rem 1.5rem;
+  }
+  
+  .help-header h1 {
+    font-size: 2rem;
+  }
+  
+  .help-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .help-contact {
+    padding: 2rem 1.5rem;
+  }
+  
+  .help-contact h2 {
+    font-size: 1.5rem;
+  }
+}

@@ -2,8 +2,41 @@ import './App.css';
 import { apps } from './data/apps';
 import Header from './components/Header/Header';
 import AppCard from './components/AppCard/AppCard';
+import { useState, useEffect } from 'react';
 
 function App() {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show nav bar and scroll button after 200px
+      setShowScrollTop(window.scrollY > 200);
+
+      // Update active section for navigation
+      const sections = ['hero', 'apps', 'about', 'contact'];
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      if (current) setActiveSection(current);
+    };
+
+    // Call once on mount
+    handleScroll();
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="App">
       <Header 
@@ -11,59 +44,78 @@ function App() {
         subtitle="Next Generation Mobile Applications"
       />
       
+      {/* Sticky Quick Nav */}
+      <nav className={`quick-nav ${showScrollTop ? 'visible' : ''}`}>
+        <div className="quick-nav-container">
+          <a href="#hero" className={activeSection === 'hero' ? 'active' : ''}>Home</a>
+          <a href="#apps" className={activeSection === 'apps' ? 'active' : ''}>Apps</a>
+          <a href="#about" className={activeSection === 'about' ? 'active' : ''}>About</a>
+          <a href="#contact" className={activeSection === 'contact' ? 'active' : ''}>Contact</a>
+        </div>
+      </nav>
+
       {/* Hero Intro Section */}
-      <section className="hero-intro">
-        <div className="container">
-          <div className="hero-content">
-            <div className="hero-badge">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
-              </svg>
-              <span>Trusted by 10K+ Users</span>
-            </div>
-            <h1 className="hero-title">
-              Innovative Apps for <span className="hero-highlight">Modern Life</span>
-            </h1>
-            <p className="hero-description">
-              At NexageApps, we craft powerful, intuitive mobile applications that simplify your daily tasks 
-              and bring joy to your digital experience. From productivity to entertainment, we've got you covered.
-            </p>
-            <div className="hero-cta">
-              <a href="#qr-scan-pro" className="cta-button primary">
-                Explore Our Apps
+      <section id="hero" className="hero-intro">
+        <div className="hero-container-full">
+          <div className="hero-main">
+            <div className="hero-left">
+              <div className="hero-badge">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                  <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
                 </svg>
-              </a>
-              <a href="#contact" className="cta-button secondary">
-                Get in Touch
-              </a>
+                <span>Trusted by 10K+ Users</span>
+              </div>
+              <h1 className="hero-title">
+                Innovative Apps for <span className="hero-highlight">Modern Life</span>
+              </h1>
+              <p className="hero-description">
+                At NexageApps, we craft powerful, intuitive mobile applications that simplify your daily tasks 
+                and bring joy to your digital experience. From productivity to entertainment, we've got you covered.
+              </p>
+              
+              <div className="hero-pricing-badge">
+                <span className="pricing-free">FREE</span>
+                <span className="pricing-text">to download & use</span>
+                <span className="pricing-premium">Premium features available</span>
+              </div>
+              
+              <div className="hero-cta">
+                <a href="#qr-scan-pro" className="cta-button primary">
+                  Explore Our Apps
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                  </svg>
+                </a>
+                <a href="#contact" className="cta-button secondary">
+                  Get in Touch
+                </a>
+              </div>
             </div>
+            
+
           </div>
           
-          {/* Why Choose Us Section */}
-          <div className="why-choose-us">
-            <div className="why-grid">
-              <div className="why-card">
-                <div className="why-icon">🚫</div>
-                <h3>100% Ad-Free</h3>
-                <p>No annoying ads, ever. Just pure, uninterrupted app experience.</p>
-              </div>
-              <div className="why-card">
-                <div className="why-icon">🔒</div>
-                <h3>Privacy First</h3>
-                <p>Your data stays on your device. We don't collect anything. Period.</p>
-              </div>
-              <div className="why-card">
-                <div className="why-icon">📴</div>
-                <h3>Works Offline</h3>
-                <p>No internet? No problem! Our apps work perfectly offline.</p>
-              </div>
-              <div className="why-card">
-                <div className="why-icon">⚡</div>
-                <h3>Lightning Fast</h3>
-                <p>Optimized for speed. No lag, no waiting, just instant results.</p>
-              </div>
+          {/* Why Choose Us Section - Horizontal 4 Tiles */}
+          <div className="why-choose-us-horizontal">
+            <div className="why-card-horizontal">
+              <div className="why-icon-horizontal">💰</div>
+              <h3>Free to Start</h3>
+              <p>Core features free forever</p>
+            </div>
+            <div className="why-card-horizontal">
+              <div className="why-icon-horizontal">🔒</div>
+              <h3>Privacy First</h3>
+              <p>Your data stays on device</p>
+            </div>
+            <div className="why-card-horizontal">
+              <div className="why-icon-horizontal">📴</div>
+              <h3>Works Offline</h3>
+              <p>No internet needed</p>
+            </div>
+            <div className="why-card-horizontal">
+              <div className="why-icon-horizontal">⚡</div>
+              <h3>Lightning Fast</h3>
+              <p>Instant, smooth results</p>
             </div>
           </div>
         </div>
@@ -71,7 +123,7 @@ function App() {
       
       <main className="container">
         {/* App Icons Overview Section */}
-        <section className="apps-overview" aria-label="Available applications">
+        <section id="apps" className="apps-overview" aria-label="Available applications">
           <h2 className="overview-title">Our Apps</h2>
           <div className="apps-icons-grid">
             {apps.map((app, index) => (
@@ -157,7 +209,7 @@ function App() {
         </section>
 
         {/* About Section */}
-        <section className="about-section" aria-label="About us">
+        <section id="about" className="about-section" aria-label="About us">
           <div className="about-content">
             <h2 className="section-title">About NexageApps</h2>
             <p className="about-text">
@@ -198,22 +250,25 @@ function App() {
           <div className="contact-content">
             <h2 className="section-title">Get In Touch</h2>
             <p className="contact-intro">
-              Have questions, feedback, or suggestions? We'd love to hear from you!
+              Have questions, feedback, or suggestions? We'd love to hear from you! 💌
             </p>
             
-            <div className="contact-methods">
-              <a href="mailto:support@nexageapps.com" className="contact-card">
-                <div className="contact-icon">
-                  <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                  </svg>
-                </div>
-                <div className="contact-info">
-                  <h3 className="contact-title">Email Us</h3>
-                  <p className="contact-detail">support@nexageapps.com</p>
-                </div>
+            <div className="contact-email-hero">
+              <div className="email-icon-large">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="64" height="64">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+              </div>
+              <h3 className="email-title">Drop us an email</h3>
+              <a href="mailto:nexageapps@gmail.com" className="email-address">
+                nexageapps@gmail.com
               </a>
-
+              <p className="email-subtitle">
+                We read every email and typically respond within 24 hours! 🚀
+              </p>
+            </div>
+            
+            <div className="contact-methods">
               <a href="https://twitter.com/nexageapps" target="_blank" rel="noopener noreferrer" className="contact-card">
                 <div className="contact-icon">
                   <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
@@ -221,7 +276,7 @@ function App() {
                   </svg>
                 </div>
                 <div className="contact-info">
-                  <h3 className="contact-title">Follow Us</h3>
+                  <h3 className="contact-title">Follow on Twitter</h3>
                   <p className="contact-detail">@nexageapps</p>
                 </div>
               </a>
@@ -233,57 +288,22 @@ function App() {
                   </svg>
                 </div>
                 <div className="contact-info">
-                  <h3 className="contact-title">GitHub</h3>
+                  <h3 className="contact-title">Star on GitHub</h3>
                   <p className="contact-detail">@nexageapps</p>
                 </div>
               </a>
-            </div>
-
-            <div className="contact-form-wrapper">
-              <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
-                <div className="form-group">
-                  <label htmlFor="name" className="form-label">Name</label>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    name="name" 
-                    className="form-input" 
-                    placeholder="Your name"
-                    required
-                  />
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="email" className="form-label">Email</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    className="form-input" 
-                    placeholder="your.email@example.com"
-                    required
-                  />
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="message" className="form-label">Message</label>
-                  <textarea 
-                    id="message" 
-                    name="message" 
-                    className="form-textarea" 
-                    rows="5"
-                    placeholder="Tell us what's on your mind..."
-                    required
-                  ></textarea>
-                </div>
-                
-                <button type="submit" className="form-submit">
-                  Send Message
-                  <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+              
+              <a href="https://instagram.com/nexageapps" target="_blank" rel="noopener noreferrer" className="contact-card">
+                <div className="contact-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+                    <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
                   </svg>
-                </button>
-              </form>
+                </div>
+                <div className="contact-info">
+                  <h3 className="contact-title">Follow on Instagram</h3>
+                  <p className="contact-detail">@nexageapps</p>
+                </div>
+              </a>
             </div>
           </div>
         </section>
@@ -340,13 +360,14 @@ function App() {
                 <ul className="footer-links">
                   <li><a href="/help">Help Center</a></li>
                   <li><a href="/faq">FAQ</a></li>
-                  <li><a href="mailto:support@nexageapps.com">Email Support</a></li>
+                  <li><a href="mailto:nexageapps@gmail.com">Email Support</a></li>
                 </ul>
               </div>
               
               <div className="footer-section">
-                <h4 className="footer-heading">Legal</h4>
+                <h4 className="footer-heading">Resources</h4>
                 <ul className="footer-links">
+                  <li><a href="/learn-ai">Learn AI 🎓</a></li>
                   <li><a href="/privacy">Privacy Policy</a></li>
                   <li><a href="/terms">Terms of Service</a></li>
                   <li><a href="/cookies">Cookie Policy</a></li>
@@ -397,6 +418,17 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* Scroll to Top Button */}
+      <button 
+        className={`scroll-to-top ${showScrollTop ? 'visible' : ''}`}
+        onClick={scrollToTop}
+        aria-label="Scroll to top"
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+          <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+      </button>
     </div>
   );
 }

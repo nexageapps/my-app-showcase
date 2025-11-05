@@ -154,7 +154,7 @@ function TermsOfService() {
               We're here for you:
             </p>
             <p>
-              Email us at <a href="mailto:support@nexageapps.com">support@nexageapps.com</a>
+              Email us at <a href="mailto:nexageapps@gmail.com">nexageapps@gmail.com</a>
             </p>
             <p>
               We actually read and respond to every email. Promise! 💌

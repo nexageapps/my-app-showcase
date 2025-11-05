@@ -121,7 +121,7 @@ function PrivacyPolicy() {
             <p>
               We're real people who actually read emails! If you have any questions about privacy 
               or anything else, reach out to us at{' '}
-              <a href="mailto:support@nexageapps.com">support@nexageapps.com</a>
+              <a href="mailto:nexageapps@gmail.com">nexageapps@gmail.com</a>
             </p>
           </section>
 
