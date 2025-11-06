@@ -45,7 +45,7 @@ function CookiePolicy() {
             </p>
           </section>
 
-          <section className="legal-section">
+          <section className="hide legal-section">
             <div className="section-icon">🌐</div>
             <h2>What About This Website?</h2>
             <p>
