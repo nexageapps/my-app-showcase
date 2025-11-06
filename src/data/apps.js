@@ -2,57 +2,53 @@ export const apps = [
   {
     id: 'qr-scan-pro',
     name: 'QR Scan Pro',
-    icon: '/images/qr-scan-icon.svg', // Placeholder - add your app icon
+    icon: require('../components/Images/QRScanPro/icon.png'),
     tagline: 'Your Pocket-Sized QR Code Powerhouse 📱',
-    description: 'Say goodbye to clunky QR scanners! QR Scan Pro is lightning-fast, super smart, and completely ad-free. Scan anything from restaurant menus to event tickets, save your favorites, and even create your own custom QR codes. All offline, all private, all yours! 🚀',
+    description: 'Lightning-fast QR scanner that\'s smart, ad-free, and works offline. Scan anything, save favorites, and create custom QR codes instantly! 🚀',
     features: [
-      '🎯 Lightning-fast scanning - Point and done!',
-      '🧠 Smart AI recognition - Knows what you\'re scanning',
-      '📸 Scan from photos - Got a screenshot? We got you!',
-      '⚡ Instant results - No waiting, no loading',
-      '🎨 Beautiful dashboard - Easy on the eyes',
-      '🔍 Smart search - Find anything in seconds',
-      '⭐ Organize with favorites - Keep the important stuff handy',
-      '📤 Share instantly - Send codes to anyone',
-      '✨ Create custom QR codes - Make your own in seconds',
-      '💾 Auto-save history - Never lose a scan',
-      '🎭 Custom categories - Organize your way',
-      '📝 Image to text - Extract text from any image'
+      '⚡ Instant scanning',
+      '🧠 AI recognition',
+      '📸 Scan from photos',
+      '🎨 Beautiful interface',
+      '🔍 Smart search',
+      '⭐ Favorites & categories',
+      '📤 Easy sharing',
+      '✨ Create QR codes',
+      '💾 Auto-save history',
+      '📴 Works offline',
+      '🔒 Privacy-first',
+      '🚫 100% ad-free'
     ],
     images: [
-      '/images/qr-scan-1.svg',
-      '/images/qr-scan-2.svg',
-      '/images/qr-scan-3.svg'
+      require('../components/Images/QRScanPro/1.png')
     ],
-    appStoreUrl: 'https://apps.apple.com/app/qr-scan-pro', // Placeholder - replace with actual URL
-    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.qrscanpro' // Placeholder - replace with actual URL
+    appStoreUrl: 'https://apps.apple.com/us/app/qr-scan-pro/id1624446995',
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.qrscanpro'
   },
   {
     id: 'lucky-coin-flip',
     name: 'Lucky Coin Flip',
-    icon: '/images/coin-flip-icon.svg', // Placeholder - add your app icon
+    icon: require('../components/Images/LuckyFlipCoin/icon.png'),
     tagline: 'Let Fate Decide in Style! 🪙✨',
-    description: 'Can\'t decide what to eat? Where to go? Who pays the bill? Let Lucky Coin Flip help! Watch a gorgeous 3D coin spin through the air with physics so realistic, you\'ll want to catch it. No ads, no nonsense—just pure, satisfying decision-making magic! 🎯',
+    description: 'Can\'t decide? Let Lucky Coin Flip help! Watch a gorgeous 3D coin spin with realistic physics. No ads, no nonsense—just pure decision-making magic! 🎯',
     features: [
-      '🎉 Brand new release - Fresh off the press!',
-      '🎬 Stunning 3D animation - Watch it spin!',
-      '✨ Gorgeous design - Eye candy for your phone',
-      '⚡ Buttery smooth - 60fps perfection',
-      '🚫 Zero ads - Just you and the coin',
-      '🎯 Real physics - Feels like the real thing',
-      '📴 Works offline - Flip anywhere, anytime',
-      '🎲 Perfect for decisions - Let luck decide!',
-      '🎨 Beautiful sound effects - Satisfying clinks',
-      '🌙 Dark mode ready - Easy on the eyes',
-      '💫 Instant results - No waiting around',
-      '🏆 Simple & addictive - One tap, endless fun!'
+      '🎬 Stunning 3D animation',
+      '✨ Gorgeous design',
+      '⚡ Smooth 60fps',
+      '🚫 Zero ads',
+      '🎯 Real physics',
+      '📴 Works offline',
+      '🎲 Perfect for decisions',
+      '🎨 Beautiful sounds',
+      '🌙 Dark mode',
+      '💫 Instant results',
+      '🏆 Simple & fun',
+      '🆓 Completely free'
     ],
     images: [
-      '/images/coin-flip-1.svg',
-      '/images/coin-flip-2.svg',
-      '/images/coin-flip-3.svg'
+      require('../components/Images/LuckyFlipCoin/1.PNG')
     ],
-    appStoreUrl: 'https://apps.apple.com/app/lucky-coin-flip', // Placeholder - replace with actual URL
-    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.luckycoinflip' // Placeholder - replace with actual URL
+    appStoreUrl: 'https://apps.apple.com/us/app/lucky-flipper-coin-flip-game/id6754183928',
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.nexageapps.coinflipgame&hl=en_ZA'
   }
 ];

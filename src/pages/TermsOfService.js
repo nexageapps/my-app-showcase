@@ -33,8 +33,8 @@ function TermsOfService() {
               <li><strong>Lucky Coin Flip:</strong> A beautiful, realistic coin flip app for making decisions with style</li>
             </ul>
             <p>
-              Both apps are <strong>completely free to download and use</strong>. No hidden fees, 
-              no surprise charges, no premium tiers. What you see is what you get! 🎁
+              Both apps are <strong>free to download and use</strong> with core features available at no cost. 
+              Some apps offer optional premium features for enhanced functionality. No hidden fees or surprise charges! 🎁
             </p>
           </section>
 

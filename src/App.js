@@ -92,6 +92,31 @@ function App() {
               </div>
             </div>
             
+            <div className="hero-right">
+              <div className="hero-quote-card">
+                <div className="quote-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+                    <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
+                  </svg>
+                </div>
+                <blockquote className="hero-quote">
+                  "The best way to predict the future is to create it."
+                </blockquote>
+                <cite className="hero-quote-author">— Peter Drucker</cite>
+                <div className="quote-decoration"></div>
+              </div>
+              
+              <div className="hero-stats-mini">
+                <div className="stat-mini">
+                  <span className="stat-mini-number">50K+</span>
+                  <span className="stat-mini-label">Happy Users</span>
+                </div>
+                <div className="stat-mini">
+                  <span className="stat-mini-number">4.8★</span>
+                  <span className="stat-mini-label">App Rating</span>
+                </div>
+              </div>
+            </div>
 
           </div>
           
@@ -99,23 +124,23 @@ function App() {
           <div className="why-choose-us-horizontal">
             <div className="why-card-horizontal">
               <div className="why-icon-horizontal">💰</div>
-              <h3>Free to Start</h3>
-              <p>Core features free forever</p>
+              <h3>Free</h3>
+              <p>Core features at no cost</p>
             </div>
             <div className="why-card-horizontal">
               <div className="why-icon-horizontal">🔒</div>
-              <h3>Privacy First</h3>
-              <p>Your data stays on device</p>
+              <h3>Private</h3>
+              <p>Data stays on your device</p>
             </div>
-            <div className="why-card-horizontal">
+            <div className="why-card-horizontal why-card-desktop-only">
               <div className="why-icon-horizontal">📴</div>
-              <h3>Works Offline</h3>
-              <p>No internet needed</p>
+              <h3>Offline</h3>
+              <p>No internet required</p>
             </div>
-            <div className="why-card-horizontal">
+            <div className="why-card-horizontal why-card-desktop-only">
               <div className="why-icon-horizontal">⚡</div>
-              <h3>Lightning Fast</h3>
-              <p>Instant, smooth results</p>
+              <h3>Fast</h3>
+              <p>Instant performance</p>
             </div>
           </div>
         </div>
@@ -383,7 +408,7 @@ function App() {
               <p>&copy; 2024 NexageApps. All rights reserved.</p>
               <p className="footer-made-with">
                 Made with 
-                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                <svg viewBox="0 0 24 24" fil  l="currentColor" width="16" height="16">
                   <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                 </svg>
                 for mobile users everywhere

@@ -1,49 +1,120 @@
 .gallery {
   width: 100%;
-  display: grid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
   margin-bottom: 0;
+  min-height: 300px;
 }
 
-/* Single image layout - full width */
+/* Single image layout - centered */
 .gallery1 {
-  grid-template-columns: 1fr;
+  display: flex;
+  justify-content: center;
+}
+
+.gallery1 .imageWrapper {
+  flex: 0 0 180px;
+  max-width: 180px;
 }
 
 /* Two images layout - side by side */
 .gallery2 {
-  grid-template-columns: 1fr 1fr;
-}
-
-/* Three images layout - primary left, two stacked right */
-.gallery3 {
-  grid-template-columns: 55% 1fr;
-  grid-template-rows: 1fr 1fr;
+  display: flex;
+  justify-content: center;
   gap: 1rem;
 }
 
-.gallery3 .imageWrapper:first-child {
-  grid-row: 1 / 3;
+.gallery2 .imageWrapper {
+  flex: 0 0 180px;
+  max-width: 180px;
+}
+
+/* Three images layout - show only one with slant effect */
+.gallery3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  position: relative;
+  perspective: 1000px;
+}
+
+.gallery3 .imageWrapper {
+  flex: 0 0 180px;
+  max-width: 180px;
+}
+
+/* Hide all except the second (middle) image */
+.gallery3 .imageWrapper:nth-child(1),
+.gallery3 .imageWrapper:nth-child(3) {
+  display: none;
+}
+
+.gallery3 .imageWrapper:nth-child(2) {
+  display: block;
+  transform: rotateY(-8deg) rotateX(2deg);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
 .imageWrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 9 / 16;
-  overflow: hidden;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  aspect-ratio: 9 / 19.5;
+  overflow: visible;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.imageWrapper::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  background: linear-gradient(145deg, #2d3748 0%, #1a202c 100%);
+  border-radius: 28px;
+  z-index: -1;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.imageWrapper::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 20px;
+  background: #1a202c;
+  border-radius: 0 0 12px 12px;
+  z-index: 2;
+}
+
+.imageWrapper:hover {
+  transform: scale(1.05) translateY(-8px);
+}
+
+.imageWrapper:hover::before {
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .image {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 16px;
+  object-position: center;
+  border-radius: 20px;
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: opacity;
   backface-visibility: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .image.loading {
@@ -105,22 +176,32 @@
   }
 }
 
-/* Responsive adjustments for mobile - stack images vertically */
+/* Responsive adjustments for mobile - show single centered image */
 @media (max-width: 640px) {
   .gallery2,
   .gallery3 {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 0;
+    perspective: 800px;
   }
   
-  .gallery3 .imageWrapper:first-child {
-    grid-row: auto;
-  }
-  
-  /* Show only first image on mobile */
+  /* Show only middle/second image on mobile */
   .gallery2 .imageWrapper:not(:first-child),
-  .gallery3 .imageWrapper:not(:first-child) {
+  .gallery3 .imageWrapper:not(:nth-child(2)) {
     display: none;
+  }
+
+  .gallery3 .imageWrapper {
+    flex: 0 0 160px;
+    max-width: 160px;
+  }
+
+  .gallery3 .imageWrapper:nth-child(2) {
+    transform: rotateY(-6deg) rotateX(1deg);
+    box-shadow: 
+      0 8px 20px rgba(0, 0, 0, 0.12),
+      0 0 0 1px rgba(0, 0, 0, 0.05);
   }
   
   .placeholderIcon {
@@ -134,6 +215,19 @@
   
   .imageWrapper {
     border-radius: 12px;
+  }
+
+  .imageWrapper::before {
+    border-radius: 20px;
+  }
+
+  .imageWrapper::after {
+    width: 60px;
+    height: 16px;
+  }
+
+  .imageWrapper:hover {
+    transform: rotateY(-6deg) rotateX(1deg) scale(1.02);
   }
   
   .image {
@@ -156,15 +250,52 @@
   }
 }
 
-/* Tablet layout - maintain side-by-side for 2 and 3 images */
-@media (min-width: 768px) and (max-width: 1023px) {
+/* Tablet layout - show single centered image with slant */
+@media (min-width: 641px) and (max-width: 1023px) {
   .gallery {
     gap: 1rem;
   }
+
+  .gallery3 {
+    padding: 2rem 1rem;
+    perspective: 900px;
+  }
+
+  .gallery3 .imageWrapper {
+    flex: 0 0 190px;
+    max-width: 190px;
+  }
+
+  /* Show only middle image on tablet */
+  .gallery3 .imageWrapper:nth-child(1),
+  .gallery3 .imageWrapper:nth-child(3) {
+    display: none;
+  }
+
+  .gallery3 .imageWrapper:nth-child(2) {
+    display: block;
+    transform: rotateY(-7deg) rotateX(1.5deg);
+    box-shadow: 
+      0 10px 25px rgba(0, 0, 0, 0.14),
+      0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
   
   .imageWrapper {
-    aspect-ratio: 9 / 16;
+    aspect-ratio: 9 / 19.5;
     border-radius: 14px;
+  }
+
+  .imageWrapper::before {
+    border-radius: 22px;
+  }
+
+  .imageWrapper::after {
+    width: 70px;
+    height: 18px;
+  }
+
+  .imageWrapper:hover {
+    transform: rotateY(-7deg) rotateX(1.5deg) scale(1.04);
   }
   
   .image {
@@ -180,27 +311,69 @@
   }
 }
 
-/* Desktop layout - optimal image presentation */
+/* Desktop layout - show single centered image with 3D slant effect */
 @media (min-width: 1024px) {
   .gallery {
-    gap: 1.25rem;
+    gap: 1.5rem;
+  }
+
+  .gallery3 {
+    padding: 2.5rem 1rem;
+    perspective: 1200px;
+  }
+
+  .gallery3 .imageWrapper {
+    flex: 0 0 220px;
+    max-width: 220px;
+  }
+
+  /* Show only middle image on desktop */
+  .gallery3 .imageWrapper:nth-child(1),
+  .gallery3 .imageWrapper:nth-child(3) {
+    display: none;
+  }
+
+  .gallery3 .imageWrapper:nth-child(2) {
+    display: block;
+    transform: rotateY(-8deg) rotateX(2deg);
+    box-shadow: 
+      0 15px 40px rgba(0, 0, 0, 0.18),
+      0 0 0 1px rgba(0, 0, 0, 0.05),
+      -10px 0 30px rgba(102, 126, 234, 0.1);
   }
   
   .imageWrapper {
-    aspect-ratio: 9 / 16;
-    border-radius: 18px;
+    aspect-ratio: 9 / 19.5;
+    border-radius: 16px;
+  }
+
+  .imageWrapper::before {
+    border-radius: 24px;
+  }
+
+  .imageWrapper::after {
+    width: 75px;
+    height: 18px;
+  }
+
+  .imageWrapper:hover {
+    transform: rotateY(-8deg) rotateX(2deg) scale(1.06) translateY(-10px);
+    box-shadow: 
+      0 25px 60px rgba(0, 0, 0, 0.25),
+      0 0 0 1px rgba(0, 0, 0, 0.05),
+      -15px 0 40px rgba(102, 126, 234, 0.15);
   }
   
   .image {
-    border-radius: 18px;
+    border-radius: 16px;
   }
   
   .placeholder {
-    border-radius: 18px;
+    border-radius: 16px;
   }
   
   .loadingPlaceholder {
-    border-radius: 18px;
+    border-radius: 16px;
   }
   
   .placeholderIcon {
