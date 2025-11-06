@@ -21,6 +21,8 @@
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 1000px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .card:not(:hover) {
@@ -58,7 +60,7 @@
 }
 
 .appName {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2rem);
   font-weight: 700;
   color: #2d3748;
   margin: 0;
@@ -66,22 +68,30 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .tagline {
-  font-size: 1.125rem;
+  font-size: clamp(1rem, 1.5vw + 0.5rem, 1.125rem);
   color: #4a5568;
   margin: 0;
   font-weight: 500;
   line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .description {
-  font-size: 0.95rem;
+  font-size: clamp(0.9375rem, 1vw + 0.5rem, 1rem);
   color: #718096;
   margin: 0;
   line-height: 1.6;
   margin-top: 0.25rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .downloadSection {

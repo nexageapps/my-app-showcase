@@ -63,7 +63,7 @@ function App() {
                 <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                   <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
                 </svg>
-                <span>Trusted by 10K+ Users</span>
+                <span>Trusted by 45K+ Users</span>
               </div>
               <h1 className="hero-title">
                 Innovative Apps for <span className="hero-highlight">Modern Life</span>
@@ -108,11 +108,11 @@ function App() {
               
               <div className="hero-stats-mini">
                 <div className="stat-mini">
-                  <span className="stat-mini-number">50K+</span>
+                  <span className="stat-mini-number">10K+</span>
                   <span className="stat-mini-label">Happy Users</span>
                 </div>
                 <div className="stat-mini">
-                  <span className="stat-mini-number">4.8★</span>
+                  <span className="stat-mini-number">4.4★</span>
                   <span className="stat-mini-label">App Rating</span>
                 </div>
               </div>
@@ -191,7 +191,7 @@ function App() {
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                 </svg>
               </div>
-              <h3 className="stat-number">50K+</h3>
+              <h3 className="stat-number">45K+</h3>
               <p className="stat-label">Downloads</p>
             </div>
             <div className="stat-card">
@@ -347,11 +347,11 @@ function App() {
               </p>
               <div className="footer-stats">
                 <div className="footer-stat">
-                  <strong>50K+</strong>
+                  <strong>45K+</strong>
                   <span>Downloads</span>
                 </div>
                 <div className="footer-stat">
-                  <strong>4.8★</strong>
+                  <strong>4.4★</strong>
                   <span>Rating</span>
                 </div>
                 <div className="footer-stat">
@@ -375,8 +375,8 @@ function App() {
                 <ul className="footer-links">
                   <li><a href="#about">About Us</a></li>
                   <li><a href="#contact">Contact</a></li>
-                  <li><a href="/careers">Careers</a></li>
-                  <li><a href="/blog">Blog</a></li>
+                  <li><a className="hide" href="/careers">Careers</a></li>
+                  <li><a className="hide" href="/blog">Blog</a></li>
                 </ul>
               </div>
               
@@ -392,10 +392,11 @@ function App() {
               <div className="footer-section">
                 <h4 className="footer-heading">Resources</h4>
                 <ul className="footer-links">
-                  <li><a href="/learn-ai">Learn AI 🎓</a></li>
-                  <li><a href="/privacy">Privacy Policy</a></li>
+                 
+                  <li><a href="/privacypolicy">Privacy Policy</a></li>
                   <li><a href="/terms">Terms of Service</a></li>
                   <li><a href="/cookies">Cookie Policy</a></li>
+                   <li><a className="hide" href="/learn-ai">Learn AI 🎓</a></li>
                 </ul>
               </div>
             </div>
