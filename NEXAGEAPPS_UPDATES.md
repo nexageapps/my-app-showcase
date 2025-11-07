@@ -68,7 +68,7 @@ Complete footer redesign with:
 - Better mobile responsiveness
 
 ### 6. **Updated Contact Information** 📧
-- Email: support@nexageapps.com
+- Email: nexageapps@gmail.com
 - Twitter: @nexageapps
 - GitHub: @nexageapps
 - Added GitHub as a contact method
