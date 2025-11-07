@@ -14,11 +14,11 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter basename={process.env.NODE_ENV === 'production' ? '/my-app-showcase' : '/'}>
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
-        <Route path="privacypolicy" element={<PrivacyPolicy />} />
+        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<TermsOfService />} />
         <Route path="/cookies" element={<CookiePolicy />} />
         <Route path="/faq" element={<FAQ />} />

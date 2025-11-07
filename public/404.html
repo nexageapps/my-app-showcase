@@ -3,10 +3,15 @@
   <head>
     <meta charset="utf-8">
     <script type="text/javascript">
-      // Redirect all GitHub Pages 404s to the app root
-      var segment = '/my-app-showcase';
-      var redirect = segment + window.location.pathname + window.location.search + window.location.hash;
-      window.location.replace(redirect);
+      // Only redirect if user is outside the app subpath
+      (function() {
+        var repoName = '/my-app-showcase';
+        var current = window.location.pathname;
+        if (!current.startsWith(repoName)) {
+          var redirect = repoName + current + window.location.search + window.location.hash;
+          window.location.replace(redirect);
+        }
+      })();
     </script>
   </head>
   <body></body>
