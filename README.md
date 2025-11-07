@@ -22,7 +22,7 @@ A modern, fully responsive React website showcasing NexageApps' mobile applicati
 | 🌐 **Production** | [nexageapps.com](https://nexageapps.com) | ✅ Live |
 | 🚀 **GitHub Pages** | [nexageapps.github.io](https://nexageapps.github.io/my-app-showcase) | ✅ Live |
 
-## � Feattured Apps
+## � Featured Apps
 
 <table>
 <tr>
