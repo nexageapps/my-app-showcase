@@ -1,4 +1,4 @@
-# NexageApps Showcase Website 🚀
+# Nexageapps.com Showcase Website 🚀
 
 A modern, fully responsive React website showcasing NexageApps' mobile applications portfolio. Built with React 19 and featuring fluid typography, smooth animations, intuitive navigation, and a clean, professional design inspired by Apple and Google Material Design principles.
 
