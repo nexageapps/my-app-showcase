@@ -12,8 +12,10 @@
 /build
 
 # kiro 
-./kiro
-.kiro/specs/
+/.kiro
+.kiro/
+/documentation
+
 
 # misc
 .DS_Store
