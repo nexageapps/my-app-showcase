@@ -2,6 +2,8 @@
 
 A modern, fully responsive React website showcasing NexageApps' mobile applications portfolio. Built with React 19 and featuring fluid typography, smooth animations, intuitive navigation, and a clean, professional design inspired by Apple and Google Material Design principles.
 
+## 🚀 Live Website - https://nexageapps.com
+
 ## 🚀 Featured Apps
 
 ### QR Scan Pro
