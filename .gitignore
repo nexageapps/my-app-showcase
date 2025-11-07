@@ -13,6 +13,7 @@
 
 # kiro 
 ./kiro
+.kiro/specs/
 
 # misc
 .DS_Store
