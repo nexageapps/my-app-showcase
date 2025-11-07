@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="0; URL='/my-app-showcase'" />
-    <script>
-      // Redirect to the correct path within the app
-      const redirectTo = '/my-app-showcase' + window.location.pathname + window.location.search + window.location.hash;
-      window.location.replace(redirectTo);
+    <meta charset="utf-8">
+    <script type="text/javascript">
+      // Redirect all GitHub Pages 404s to the app root
+      var segment = '/my-app-showcase';
+      var redirect = segment + window.location.pathname + window.location.search + window.location.hash;
+      window.location.replace(redirect);
     </script>
   </head>
   <body></body>
