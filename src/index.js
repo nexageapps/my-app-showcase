@@ -9,12 +9,14 @@ import CookiePolicy from './pages/CookiePolicy';
 import FAQ from './pages/FAQ';
 import HelpCenter from './pages/HelpCenter';
 import LearnAI from './pages/LearnAI';
+import ScrollToTop from './components/ScrollToTop';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <HashRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
