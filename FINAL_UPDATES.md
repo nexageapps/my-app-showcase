@@ -1,5 +1,5 @@
 # Final NexageApps Updates 🎉
-
+ 
 ## Major Changes Completed
 
 ### 1. **Contact Section Simplified** ✉️
