@@ -56,7 +56,7 @@ Let fate decide in style with stunning 3D animations and realistic physics. Perf
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/nexageapps/my-app-showcase
 
 # Navigate to project directory
 cd my-app-showcase
