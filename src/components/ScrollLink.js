@@ -7,11 +7,15 @@ export default function ScrollLink({ to, children, className, onClick, style }) 
   const handleClick = (e) => {
     e.preventDefault();
     
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const scrollBehavior = prefersReducedMotion ? 'auto' : 'smooth';
+    
     // If we're already on the home page, just scroll
     if (location.pathname === '/') {
       const element = document.getElementById(to);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({ behavior: scrollBehavior });
       }
     } else {
       // Navigate to home first, then scroll
@@ -19,7 +23,7 @@ export default function ScrollLink({ to, children, className, onClick, style }) 
       setTimeout(() => {
         const element = document.getElementById(to);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          element.scrollIntoView({ behavior: scrollBehavior });
         }
       }, 100);
     }

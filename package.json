@@ -2,7 +2,7 @@
   "name": "my-app-showcase",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nexageapps.github.io/my-app-showcase",
+  "homepage": "https://www.nexageapps.com",
 
   "dependencies": {
     "@testing-library/dom": "^10.4.1",

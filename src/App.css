@@ -68,6 +68,8 @@ body {
   width: 100%;
   max-width: 100vw;
   position: relative;
+  /* Prevent font loading layout shift */
+  font-display: swap;
 }
 
 /*Hide the section*/
@@ -85,11 +87,21 @@ body {
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Add safe area inset support for notched devices */
+  padding-top: env(safe-area-inset-top);
+  /* GPU acceleration for smooth scrolling */
+  transform: translate3d(0, -100px, 0);
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 .quick-nav.visible {
-  top: 0;
+  transform: translate3d(0, 0, 0);
+}
+
+.quick-nav:not(.visible) {
+  will-change: auto;
 }
 
 .quick-nav-container {
@@ -113,6 +125,24 @@ body {
   transition: all 0.3s ease;
   position: relative;
   white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure minimum touch target size with invisible extension */
+.quick-nav a::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  z-index: -1;
 }
 
 .quick-nav a:hover {
@@ -125,7 +155,7 @@ body {
   background: rgba(102, 126, 234, 0.15);
 }
 
-.quick-nav a.active::after {
+.quick-nav a.active::before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -135,12 +165,18 @@ body {
   height: 3px;
   background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
   border-radius: 2px;
+  z-index: 1;
+}
+
+.quick-nav a:active {
+  transform: scale(0.96);
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Scroll to Top Button */
 .scroll-to-top {
   position: fixed;
-  bottom: -60px;
+  bottom: 2rem;
   right: 2rem;
   width: 56px;
   height: 56px;
@@ -150,24 +186,45 @@ body {
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, box-shadow 0.3s ease;
   z-index: 999;
   display: flex;
   align-items: center;
   justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  /* GPU acceleration for smooth scrolling */
+  transform: translate3d(0, 80px, 0);
+  backface-visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .scroll-to-top.visible {
-  bottom: 2rem;
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  pointer-events: auto;
+  will-change: transform;
+}
+
+.scroll-to-top:not(.visible) {
+  will-change: auto;
 }
 
 .scroll-to-top:hover {
-  transform: translateY(-4px);
+  transform: translate3d(0, -4px, 0);
   box-shadow: 0 8px 30px rgba(102, 126, 234, 0.5);
+  will-change: transform, box-shadow;
+}
+
+.scroll-to-top:not(:hover) {
+  will-change: auto;
 }
 
 .scroll-to-top:active {
-  transform: translateY(-2px);
+  transform: scale(0.96);
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* App Container */
@@ -200,6 +257,16 @@ body {
     max-width: 100%;
     padding: 0 1rem;
     margin: 0 auto;
+  }
+
+  .apps-details {
+    margin: 2rem 0;
+    padding: 0 1rem;
+  }
+
+  .apps-grid {
+    gap: 2rem;
+    grid-template-columns: 1fr;
   }
   
   .app-icon-card {
@@ -327,6 +394,18 @@ body {
     text-align: left;
     padding: 1.5rem;
     border-radius: 16px;
+    min-height: 48px;
+  }
+
+  /* Ensure minimum touch target size with invisible extension */
+  .contact-card::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    z-index: -1;
   }
   
   .contact-icon {
@@ -374,6 +453,18 @@ body {
     word-break: break-word;
     margin: 1.25rem 0;
     display: inline-block;
+    min-height: 48px;
+  }
+
+  /* Ensure minimum touch target size with invisible extension */
+  .email-address::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    z-index: -1;
   }
   
   .email-subtitle {
@@ -383,7 +474,8 @@ body {
   }
   
   .hero-intro {
-    padding: 2rem 0 2.5rem;
+    padding: 1.5rem 0 2rem;
+    min-height: auto;
   }
   
   .hero-container-full {
@@ -393,8 +485,8 @@ body {
   .hero-main {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .hero-left {
@@ -402,7 +494,7 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 1.25rem;
+    gap: 1rem;
     width: 100%;
     order: 1;
   }
@@ -411,7 +503,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1rem;
     width: 100%;
     max-width: 100%;
     order: 2;
@@ -423,7 +515,7 @@ body {
     font-size: 2rem;
     text-align: center;
     line-height: 1.25;
-    margin: 0;
+    margin: 0 0 0.5rem 0;
     width: 100%;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -434,7 +526,7 @@ body {
     font-size: 1.0625rem;
     text-align: center;
     line-height: 1.7;
-    margin: 0;
+    margin: 0 0 0.5rem 0;
     width: 100%;
     max-width: 100%;
     word-wrap: break-word;
@@ -443,9 +535,9 @@ body {
   }
   
   .hero-badge {
-    margin: 0 auto;
+    margin: 0 auto 0.5rem;
     width: fit-content;
-    padding: 0.75rem 1.25rem;
+    padding: 0.625rem 1.125rem;
     font-size: 0.875rem;
   }
 
@@ -459,10 +551,10 @@ body {
     align-items: center;
     text-align: center;
     gap: 0.5rem;
-    margin: 0 auto;
+    margin: 0 auto 0.5rem;
     width: fit-content;
     max-width: 95%;
-    padding: 1.5rem 1.5rem;
+    padding: 1.25rem 1.5rem;
     border-radius: 18px;
     box-sizing: border-box;
   }
@@ -493,9 +585,10 @@ body {
   
   .hero-cta {
     flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    align-items: stretch;
+    gap: 0.875rem;
     width: 100%;
+    margin-top: 0.5rem;
   }
   
   .cta-button {
@@ -504,13 +597,25 @@ body {
     padding: 1.125rem 1.5rem;
     border-radius: 14px;
     width: 100%;
-    max-width: 340px;
+    max-width: 100%;
     box-sizing: border-box;
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
     text-align: center;
     line-height: 1.4;
+    min-height: 48px;
+  }
+
+  /* Ensure minimum touch target size with invisible extension */
+  .cta-button::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    z-index: -1;
   }
 
   .cta-button svg {
@@ -667,7 +772,19 @@ body {
   }
   
   .quick-nav {
-    display: none !important;
+    /* Enable sticky nav on mobile */
+    display: block;
+  }
+
+  .quick-nav-container {
+    padding: 0.75rem 1rem;
+    gap: 0.5rem;
+  }
+
+  .quick-nav a {
+    font-size: 0.8125rem;
+    padding: 0.625rem 0.875rem;
+    min-height: 48px;
   }
 
   /* Prevent horizontal overflow */
@@ -689,6 +806,18 @@ body {
     width: 52px;
     height: 52px;
     right: 1rem;
+    position: relative;
+  }
+
+  /* Ensure minimum touch target size with invisible extension */
+  .scroll-to-top::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    z-index: -1;
   }
   
   .scroll-to-top.visible {
@@ -711,6 +840,8 @@ body {
   .footer {
     padding: 2.5rem 1.25rem 2rem;
     margin-top: 2.5rem;
+    /* Add safe area inset support for notched devices */
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
   }
 
   .footer .container {
@@ -753,6 +884,7 @@ body {
     overflow-wrap: break-word;
   }
   
+  /* 2-column grid layout for footer links on mobile */
   .footer-links-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem 1.5rem;
@@ -780,13 +912,34 @@ body {
     align-items: center;
   }
 
+  /* Ensure minimum 14px font size for footer text */
   .footer-links a {
-    font-size: 0.9375rem;
+    font-size: 0.9375rem; /* 15px - above minimum 14px */
     word-break: break-word;
     text-align: center;
     transform: none !important;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0.5rem 0.75rem;
+    /* Add minimum 8px spacing between links */
+    margin-bottom: 0.5rem;
   }
 
+  /* Ensure minimum touch target size with invisible extension */
+  .footer-links a::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    z-index: -1;
+  }
+
+  /* Remove hover transforms on mobile */
   .footer-links a:hover {
     transform: none !important;
   }
@@ -809,7 +962,7 @@ body {
   }
 
   .footer-stat span {
-    font-size: 0.8125rem;
+    font-size: 0.875rem; /* 14px - meets minimum requirement */
     display: block;
   }
 
@@ -830,7 +983,7 @@ body {
   }
   
   .footer-bottom-left p {
-    font-size: 0.75rem;
+    font-size: 0.875rem; /* 14px - meets minimum requirement */
     line-height: 1.5;
     text-align: center;
   }
@@ -842,7 +995,7 @@ body {
   }
 
   .footer-social-label {
-    font-size: 0.8125rem;
+    font-size: 0.875rem; /* 14px - meets minimum requirement */
     text-align: center;
   }
 
@@ -851,9 +1004,22 @@ body {
     justify-content: center;
   }
 
+  /* Ensure social icons are 40x40px minimum (using 44px for better touch) */
   .social-links a {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
+    position: relative;
+  }
+
+  /* Ensure minimum touch target size with invisible extension */
+  .social-links a::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    z-index: -1;
   }
 
   .social-links a svg {
@@ -865,7 +1031,8 @@ body {
 /* Extra small mobile - optimized footer and hero */
 @media (max-width: 480px) {
   .hero-intro {
-    padding: 1.5rem 0 2rem;
+    padding: 1.25rem 0 1.75rem;
+    min-height: auto;
   }
   
   .hero-container-full {
@@ -875,8 +1042,8 @@ body {
   .hero-main {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
   }
   
   .hero-title {
@@ -885,6 +1052,7 @@ body {
     width: 100%;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    margin-bottom: 0.5rem;
   }
   
   .hero-description {
@@ -893,11 +1061,13 @@ body {
     width: 100%;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    margin-bottom: 0.5rem;
   }
   
   .hero-badge {
-    padding: 0.625rem 1rem;
+    padding: 0.5rem 1rem;
     font-size: 0.8125rem;
+    margin-bottom: 0.5rem;
   }
   
   .hero-badge svg {
@@ -906,8 +1076,9 @@ body {
   }
   
   .hero-pricing-badge {
-    padding: 1.25rem 1.25rem;
+    padding: 1.125rem 1.25rem;
     max-width: 90%;
+    margin-bottom: 0.5rem;
   }
   
   .pricing-free {
@@ -925,7 +1096,12 @@ body {
   .cta-button {
     font-size: 1rem;
     padding: 1rem 1.25rem;
-    max-width: 300px;
+    max-width: 100%;
+  }
+
+  .hero-cta {
+    gap: 0.75rem;
+    margin-top: 0.5rem;
   }
   
   .hero-quote-card {
@@ -961,6 +1137,8 @@ body {
 
   .footer {
     padding: 2rem 1rem 1.5rem;
+    /* Add safe area inset support for notched devices */
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
   }
 
   .footer .container {
@@ -976,29 +1154,33 @@ body {
   }
 
   .footer-tagline {
-    font-size: 0.875rem;
+    font-size: 0.875rem; /* 14px - meets minimum requirement */
   }
 
   .footer-description {
-    font-size: 0.875rem;
+    font-size: 0.875rem; /* 14px - meets minimum requirement */
     line-height: 1.6;
   }
 
+  /* 2-column grid layout maintained on extra small screens */
   .footer-links-grid {
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.75rem 1.25rem;
   }
 
   .footer-heading {
-    font-size: 0.8125rem;
+    font-size: 0.875rem; /* 14px - meets minimum requirement */
     margin-bottom: 0.75rem;
   }
 
   .footer-links {
-    gap: 0.5rem;
+    gap: 0.5rem; /* 8px minimum spacing between links */
   }
 
   .footer-links a {
-    font-size: 0.875rem;
+    font-size: 0.875rem; /* 14px - meets minimum requirement */
+    /* Add minimum 8px spacing between links */
+    margin-bottom: 0.5rem;
   }
 
   .footer-stats {
@@ -1014,7 +1196,7 @@ body {
   }
 
   .footer-stat span {
-    font-size: 0.75rem;
+    font-size: 0.875rem; /* 14px - meets minimum requirement */
   }
 
   .footer-divider {
@@ -1026,12 +1208,13 @@ body {
   }
 
   .footer-bottom-left p {
-    font-size: 0.6875rem;
+    font-size: 0.875rem; /* 14px - meets minimum requirement */
   }
 
+  /* Ensure social icons are 40x40px minimum */
   .social-links a {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
   }
 
   .social-links a svg {
@@ -1120,6 +1303,11 @@ body {
   text-align: center;
   animation: fadeInScale 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
   opacity: 0;
+  will-change: transform, opacity;
+}
+
+.hero-quote-card:not(.animating) {
+  will-change: auto;
 }
 
 .quote-icon {
@@ -1162,6 +1350,11 @@ body {
   gap: 2rem;
   animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
   opacity: 0;
+  will-change: transform, opacity;
+}
+
+.hero-stats-mini:not(.animating) {
+  will-change: auto;
 }
 
 .stat-mini {
@@ -1174,12 +1367,19 @@ body {
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(102, 126, 234, 0.1);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .stat-mini:hover {
-  transform: translateY(-4px);
+  transform: translate3d(0, -4px, 0);
   box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+  will-change: transform, box-shadow;
+}
+
+.stat-mini:not(:hover) {
+  will-change: auto;
 }
 
 .stat-mini-number {
@@ -1214,6 +1414,12 @@ body {
   animation: fadeInScale 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   width: fit-content;
   box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+  will-change: transform, opacity;
+  animation-fill-mode: forwards;
+}
+
+.hero-badge:not(.animating) {
+  will-change: auto;
 }
 
 .hero-title {
@@ -1228,6 +1434,11 @@ body {
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
+  will-change: transform, opacity;
+}
+
+.hero-title:not(.animating) {
+  will-change: auto;
 }
 
 .hero-highlight {
@@ -1249,6 +1460,11 @@ body {
   word-wrap: break-word;
   overflow-wrap: break-word;
   max-width: 100%;
+  will-change: transform, opacity;
+}
+
+.hero-description:not(.animating) {
+  will-change: auto;
 }
 
 .hero-pricing-badge {
@@ -1262,6 +1478,11 @@ body {
   animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
   opacity: 0;
   width: fit-content;
+  will-change: transform, opacity;
+}
+
+.hero-pricing-badge:not(.animating) {
+  will-change: auto;
 }
 
 .pricing-free {
@@ -1292,6 +1513,11 @@ body {
   flex-wrap: wrap;
   animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
   opacity: 0;
+  will-change: transform, opacity;
+}
+
+.hero-cta:not(.animating) {
+  will-change: auto;
 }
 
 .cta-button {
@@ -1305,6 +1531,9 @@ body {
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
 }
 
 .cta-button.primary {
@@ -1331,14 +1560,19 @@ body {
   box-shadow: 0 8px 30px rgba(102, 126, 234, 0.2);
 }
 
+.cta-button:active {
+  transform: scale(0.96);
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translate3d(0, 30px, 0);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -1349,6 +1583,11 @@ body {
   gap: 1rem;
   animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
   opacity: 0;
+  will-change: transform, opacity;
+}
+
+.hero-highlights:not(.animating) {
+  will-change: auto;
 }
 
 .highlight-card {
@@ -1356,15 +1595,22 @@ body {
   border-radius: 12px;
   padding: 1.5rem 1.25rem;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
   border: 2px solid rgba(102, 126, 234, 0.1);
   text-align: center;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .highlight-card:hover {
-  transform: translateY(-4px);
+  transform: translate3d(0, -4px, 0);
   border-color: rgba(102, 126, 234, 0.3);
   box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+  will-change: transform, box-shadow;
+}
+
+.highlight-card:not(:hover) {
+  will-change: auto;
 }
 
 .highlight-icon {
@@ -1403,6 +1649,11 @@ body {
   z-index: 10;
   animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards;
   opacity: 0;
+  will-change: transform, opacity;
+}
+
+.stats-bar:not(.animating) {
+  will-change: auto;
 }
 
 .stat-item-compact {
@@ -1442,6 +1693,11 @@ body {
   margin-top: 2rem;
   animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards;
   opacity: 0;
+  will-change: transform, opacity;
+}
+
+.why-choose-us-horizontal:not(.animating) {
+  will-change: auto;
 }
 
 .why-card-horizontal {
@@ -1450,18 +1706,25 @@ body {
   padding: 2rem 1.5rem;
   text-align: center;
   border: 1px solid rgba(102, 126, 234, 0.12);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .why-card-horizontal:hover {
-  transform: translateY(-4px);
+  transform: translate3d(0, -4px, 0);
   border-color: rgba(102, 126, 234, 0.25);
   box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+  will-change: transform, box-shadow;
+}
+
+.why-card-horizontal:not(:hover) {
+  will-change: auto;
 }
 
 .why-icon-horizontal {
@@ -1599,11 +1862,11 @@ body {
 @keyframes fadeInScale {
   from {
     opacity: 0;
-    transform: scale(0.9) translateY(20px);
+    transform: scale(0.9) translate3d(0, 20px, 0);
   }
   to {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: scale(1) translate3d(0, 0, 0);
   }
 }
 
@@ -1628,6 +1891,8 @@ body {
   flex-direction: column;
   align-items: center;
   border: 1px solid rgba(102, 126, 234, 0.08);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .app-icon-card:hover {
@@ -1637,7 +1902,8 @@ body {
 }
 
 .app-icon-card:active {
-  transform: translateY(-4px);
+  transform: scale(0.96);
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .app-icon-wrapper {
@@ -1652,6 +1918,9 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
+  /* Prevent layout shift */
+  aspect-ratio: 1 / 1;
+  contain: layout style paint;
 }
 
 .app-icon {
@@ -1718,6 +1987,11 @@ body {
   border-color: rgba(102, 126, 234, 0.2);
 }
 
+.stat-card:active {
+  transform: scale(0.96);
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .stat-icon {
   width: 64px;
   height: 64px;
@@ -1728,6 +2002,9 @@ body {
   align-items: center;
   justify-content: center;
   color: white;
+  /* Prevent layout shift */
+  aspect-ratio: 1 / 1;
+  contain: layout style paint;
 }
 
 .stat-number {
@@ -1882,14 +2159,18 @@ body {
   position: relative;
   z-index: 1;
   animation: float 3s ease-in-out infinite;
+  /* Prevent layout shift */
+  aspect-ratio: 1 / 1;
+  contain: layout style paint;
+  will-change: transform;
 }
 
 @keyframes float {
   0%, 100% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translate3d(0, -10px, 0);
   }
 }
 
@@ -1921,6 +2202,9 @@ body {
   overflow-wrap: break-word;
   max-width: 100%;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
 }
 
 .email-address:hover {
@@ -1928,6 +2212,11 @@ body {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   border-color: rgba(255, 255, 255, 0.5);
+}
+
+.email-address:active {
+  transform: scale(0.96);
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .email-subtitle {
@@ -1956,12 +2245,19 @@ body {
   text-decoration: none;
   color: inherit;
   border: 1px solid rgba(102, 126, 234, 0.08);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .contact-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 36px rgba(102, 126, 234, 0.18);
   border-color: rgba(102, 126, 234, 0.2);
+}
+
+.contact-card:active {
+  transform: scale(0.96);
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .contact-icon {
@@ -1974,6 +2270,9 @@ body {
   justify-content: center;
   color: white;
   flex-shrink: 0;
+  /* Prevent layout shift */
+  aspect-ratio: 1 / 1;
+  contain: layout style paint;
 }
 
 .contact-info {
@@ -2115,6 +2414,8 @@ body {
   transition: all 0.3s ease;
   font-size: 0.9375rem;
   display: inline-block;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .footer-links a:hover {
@@ -2161,8 +2462,12 @@ body {
 }
 
 @keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+  0%, 100% { 
+    transform: scale(1);
+  }
+  50% { 
+    transform: scale(1.1);
+  }
 }
 
 .footer-social {
@@ -2193,6 +2498,8 @@ body {
   color: #667eea;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(102, 126, 234, 0.2);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .social-links a:hover {
@@ -2201,6 +2508,11 @@ body {
   transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
   border-color: transparent;
+}
+
+.social-links a:active {
+  transform: scale(0.96);
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Responsive Grid Layout */
@@ -2670,8 +2982,176 @@ body {
   }
 }
 
+/* Touch feedback for mobile devices - disable hover, keep only active state */
+@media (hover: none) and (pointer: coarse) {
+  /* Disable hover transforms on cards and buttons */
+  .cta-button:hover {
+    transform: none;
+  }
+
+  .cta-button.primary:hover {
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+  }
+
+  .cta-button.secondary:hover {
+    background: #ffffff;
+    color: #667eea;
+    box-shadow: none;
+  }
+
+  /* Enhanced touch feedback for CTA buttons - 96-97% scale with 100ms duration */
+  .cta-button:active {
+    transform: scale(0.96);
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .cta-button.primary:active {
+    box-shadow: 0 6px 24px rgba(102, 126, 234, 0.4);
+  }
+
+  .cta-button.secondary:active {
+    background: rgba(102, 126, 234, 0.1);
+    box-shadow: 0 6px 24px rgba(102, 126, 234, 0.25);
+  }
+
+  .email-address:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .email-address:active {
+    transform: scale(0.96);
+    background: rgba(255, 255, 255, 0.25);
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), background 0.1s ease;
+  }
+
+  .contact-card:hover {
+    transform: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .contact-card:active {
+    transform: scale(0.96);
+    box-shadow: 0 8px 28px rgba(102, 126, 234, 0.15);
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.1s ease;
+  }
+
+  /* Remove hover transforms on mobile for social links */
+  .social-links a:hover {
+    background: rgba(102, 126, 234, 0.15);
+    color: #667eea;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Enhanced touch feedback for social links - 96% scale with 100ms duration */
+  .social-links a:active {
+    transform: scale(0.96);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), background 0.1s ease, color 0.1s ease, box-shadow 0.1s ease;
+  }
+
+  .quick-nav a:hover {
+    color: #4a5568;
+    background: transparent;
+    transform: none;
+  }
+
+  .quick-nav a.active:hover {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.15);
+  }
+
+  .quick-nav a:active {
+    transform: scale(0.96);
+    background: rgba(102, 126, 234, 0.2);
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), background 0.1s ease;
+  }
+
+  .quick-nav a.active:active {
+    transform: scale(0.96);
+    background: rgba(102, 126, 234, 0.25);
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), background 0.1s ease;
+  }
+
+  .app-icon-card:hover {
+    transform: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .app-icon-card:active {
+    transform: scale(0.96);
+    box-shadow: 0 12px 40px rgba(102, 126, 234, 0.18);
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.1s ease;
+  }
+
+  .scroll-to-top:hover {
+    transform: none;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+  }
+
+  .scroll-to-top:active {
+    transform: scale(0.96);
+    box-shadow: 0 6px 24px rgba(102, 126, 234, 0.45);
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.1s ease;
+  }
+
+  /* Remove hover transforms on mobile */
+  .footer-links a:hover {
+    color: #cbd5e0;
+    transform: none;
+  }
+
+  /* Enhanced touch feedback for footer links */
+  .footer-links a:active {
+    transform: scale(0.96);
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), color 0.1s ease, background 0.1s ease;
+  }
+
+  .stat-card:hover {
+    transform: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .stat-card:active {
+    transform: scale(0.96);
+    box-shadow: 0 8px 28px rgba(102, 126, 234, 0.12);
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.1s ease;
+  }
+
+  .highlight-card:hover {
+    transform: none;
+    border-color: rgba(102, 126, 234, 0.1);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  .highlight-card:active {
+    transform: scale(0.96);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.12);
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.1s ease;
+  }
+
+  .why-card-horizontal:hover {
+    transform: none;
+    border-color: rgba(102, 126, 234, 0.12);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  .why-card-horizontal:active {
+    transform: scale(0.96);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.12);
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.1s ease;
+  }
+}
+
 /* Accessibility - Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
+  /* Disable or minimize all animations and transitions */
   *,
   *::before,
   *::after {
@@ -2679,5 +3159,49 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Ensure fade-in animations complete immediately */
+  .hero-badge,
+  .hero-title,
+  .hero-description,
+  .hero-pricing-badge,
+  .hero-cta,
+  .hero-quote-card,
+  .hero-stats-mini,
+  .hero-highlights,
+  .stats-bar,
+  .why-choose-us-horizontal {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Disable floating animation */
+  .email-icon-large {
+    animation: none !important;
+  }
+
+  /* Disable heartbeat animation */
+  .footer-made-with svg {
+    animation: none !important;
+  }
+
+  /* Ensure interactive elements remain functional */
+  .cta-button:hover,
+  .cta-button:active,
+  .contact-card:hover,
+  .contact-card:active,
+  .app-icon-card:hover,
+  .app-icon-card:active,
+  .scroll-to-top:hover,
+  .scroll-to-top:active {
+    transform: none !important;
+  }
+
+  /* Keep essential visibility transitions but make them instant */
+  .quick-nav.visible,
+  .scroll-to-top.visible {
+    transition: opacity 0.01ms !important;
   }
 }

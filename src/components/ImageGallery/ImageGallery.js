@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
+import LazyImage from '../LazyImage/LazyImage';
 import styles from './ImageGallery.module.css';
 
 const ImageGallery = ({ images = [], appName }) => {
-  const [loadedImages, setLoadedImages] = useState({});
   const [failedImages, setFailedImages] = useState({});
-
-  const handleImageLoad = (index) => {
-    setLoadedImages(prev => ({ ...prev, [index]: true }));
-  };
 
   const handleImageError = (index) => {
     setFailedImages(prev => ({ ...prev, [index]: true }));
@@ -35,7 +31,9 @@ const ImageGallery = ({ images = [], appName }) => {
   if (!images || images.length === 0) {
     return (
       <div className={styles.gallery} role="region" aria-label={`${appName} image gallery`}>
-        {renderPlaceholder()}
+        <div className={styles.imageWrapper}>
+          {renderPlaceholder()}
+        </div>
       </div>
     );
   }
@@ -47,7 +45,9 @@ const ImageGallery = ({ images = [], appName }) => {
   if (validImages.length === 0 && Object.keys(failedImages).length > 0) {
     return (
       <div className={styles.gallery} role="region" aria-label={`${appName} image gallery`}>
-        {renderPlaceholder()}
+        <div className={styles.imageWrapper}>
+          {renderPlaceholder()}
+        </div>
       </div>
     );
   }
@@ -65,21 +65,14 @@ const ImageGallery = ({ images = [], appName }) => {
           {failedImages[index] ? (
             renderPlaceholder()
           ) : (
-            <>
-              {!loadedImages[index] && (
-                <div className={styles.loadingPlaceholder} aria-label="Loading image">
-                  <div className={styles.spinner} aria-hidden="true"></div>
-                </div>
-              )}
-              <img
-                src={image}
-                alt={`${appName} screenshot ${index + 1} of ${imageCount}`}
-                className={`${styles.image} ${loadedImages[index] ? styles.loaded : styles.loading}`}
-                onLoad={() => handleImageLoad(index)}
-                onError={() => handleImageError(index)}
-                loading="lazy"
-              />
-            </>
+            <LazyImage
+              src={image}
+              alt={`${appName} screenshot ${index + 1} of ${imageCount}`}
+              className={styles.image}
+              aspectRatio="9 / 19.5"
+              sizes="(max-width: 640px) 160px, (max-width: 1023px) 190px, 220px"
+              onError={() => handleImageError(index)}
+            />
           )}
         </div>
       ))}

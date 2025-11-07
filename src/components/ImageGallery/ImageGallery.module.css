@@ -54,7 +54,7 @@
 
 .gallery3 .imageWrapper:nth-child(2) {
   display: block;
-  transform: rotateY(-8deg) rotateX(2deg);
+  transform: rotateY(-8deg) rotateX(2deg) translate3d(0, 0, 0);
   box-shadow: 
     0 10px 30px rgba(0, 0, 0, 0.15),
     0 0 0 1px rgba(0, 0, 0, 0.05);
@@ -65,8 +65,10 @@
   width: 100%;
   aspect-ratio: 9 / 19.5;
   overflow: visible;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   transform-style: preserve-3d;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .imageWrapper::before {
@@ -79,6 +81,7 @@
   box-shadow: 
     0 8px 24px rgba(0, 0, 0, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: box-shadow 0.5s ease;
 }
 
 .imageWrapper::after {
@@ -95,7 +98,12 @@
 }
 
 .imageWrapper:hover {
-  transform: scale(1.05) translateY(-8px);
+  transform: scale(1.05) translate3d(0, -8px, 0);
+  will-change: transform;
+}
+
+.imageWrapper:not(:hover) {
+  will-change: auto;
 }
 
 .imageWrapper:hover::before {
@@ -107,23 +115,9 @@
 .image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center;
   border-radius: 20px;
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: opacity;
-  backface-visibility: hidden;
   position: relative;
   z-index: 1;
-}
-
-.image.loading {
-  opacity: 0;
-}
-
-.image.loaded {
-  opacity: 1;
-  will-change: auto;
 }
 
 /* Placeholder styling with gradient */
@@ -144,37 +138,7 @@
   opacity: 0.9;
 }
 
-/* Loading state */
-.loadingPlaceholder {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 16px;
-}
-
-.spinner {
-  width: 2rem;
-  height: 2rem;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  border-top-color: white;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  /* Performance optimization - use GPU acceleration */
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
-}
-
-@keyframes spin {
-  to {
-    transform: rotate3d(0, 0, 1, 360deg);
-  }
-}
+/* Loading state is now handled by LazyImage component */
 
 /* Responsive adjustments for mobile - show single centered image */
 @media (max-width: 640px) {
@@ -198,7 +162,7 @@
   }
 
   .gallery3 .imageWrapper:nth-child(2) {
-    transform: rotateY(-6deg) rotateX(1deg);
+    transform: rotateY(-6deg) rotateX(1deg) translate3d(0, 0, 0);
     box-shadow: 
       0 8px 20px rgba(0, 0, 0, 0.12),
       0 0 0 1px rgba(0, 0, 0, 0.05);
@@ -227,7 +191,7 @@
   }
 
   .imageWrapper:hover {
-    transform: rotateY(-6deg) rotateX(1deg) scale(1.02);
+    transform: rotateY(-6deg) rotateX(1deg) scale(1.02) translate3d(0, 0, 0);
   }
   
   .image {
@@ -235,10 +199,6 @@
   }
   
   .placeholder {
-    border-radius: 12px;
-  }
-  
-  .loadingPlaceholder {
     border-radius: 12px;
   }
 }
@@ -274,7 +234,7 @@
 
   .gallery3 .imageWrapper:nth-child(2) {
     display: block;
-    transform: rotateY(-7deg) rotateX(1.5deg);
+    transform: rotateY(-7deg) rotateX(1.5deg) translate3d(0, 0, 0);
     box-shadow: 
       0 10px 25px rgba(0, 0, 0, 0.14),
       0 0 0 1px rgba(0, 0, 0, 0.05);
@@ -295,7 +255,7 @@
   }
 
   .imageWrapper:hover {
-    transform: rotateY(-7deg) rotateX(1.5deg) scale(1.04);
+    transform: rotateY(-7deg) rotateX(1.5deg) scale(1.04) translate3d(0, 0, 0);
   }
   
   .image {
@@ -303,10 +263,6 @@
   }
   
   .placeholder {
-    border-radius: 14px;
-  }
-  
-  .loadingPlaceholder {
     border-radius: 14px;
   }
 }
@@ -335,7 +291,7 @@
 
   .gallery3 .imageWrapper:nth-child(2) {
     display: block;
-    transform: rotateY(-8deg) rotateX(2deg);
+    transform: rotateY(-8deg) rotateX(2deg) translate3d(0, 0, 0);
     box-shadow: 
       0 15px 40px rgba(0, 0, 0, 0.18),
       0 0 0 1px rgba(0, 0, 0, 0.05),
@@ -357,7 +313,7 @@
   }
 
   .imageWrapper:hover {
-    transform: rotateY(-8deg) rotateX(2deg) scale(1.06) translateY(-10px);
+    transform: rotateY(-8deg) rotateX(2deg) scale(1.06) translate3d(0, -10px, 0);
     box-shadow: 
       0 25px 60px rgba(0, 0, 0, 0.25),
       0 0 0 1px rgba(0, 0, 0, 0.05),
@@ -372,12 +328,29 @@
     border-radius: 16px;
   }
   
-  .loadingPlaceholder {
-    border-radius: 16px;
-  }
-  
   .placeholderIcon {
     width: 4rem;
     height: 4rem;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  /* Disable or minimize all transitions */
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Disable 3D transforms and hover effects */
+  .gallery3 .imageWrapper:nth-child(2),
+  .imageWrapper:hover {
+    transform: none !important;
+  }
+
+  /* Keep will-change disabled */
+  .imageWrapper {
+    will-change: auto !important;
   }
 }

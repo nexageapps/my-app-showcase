@@ -6,19 +6,58 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.7;
+  max-width: 100%;
 }
 
 /* Ensure proper text sizing on mobile */
 @media (max-width: 767px) {
   body {
     font-size: 16px;
+    line-height: 1.7;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+  }
+
+  /* Ensure all body text meets minimum 16px requirement */
+  p, li, span, div {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* Ensure line lengths don't exceed 75 characters */
+  p, .description, .about-text, .contact-intro {
+    max-width: 75ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Headings should maintain readability */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  /* Disable smooth scrolling */
+  html {
+    scroll-behavior: auto !important;
+  }
+  
+  /* Disable or minimize all animations and transitions */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
