@@ -400,7 +400,39 @@ We welcome contributions from the community!
 
 ## 🤝 Contributing
 
-This is a private project. For bug reports or feature requests, please contact the development team at nexageapps@gmail.com.
+We love contributions! Here's how you can help:
+
+### Ways to Contribute
+
+1. 🐛 **Report Bugs** - Found a bug? [Open an issue](https://github.com/nexageapps/my-app-showcase/issues)
+2. 💡 **Suggest Features** - Have an idea? [Share it with us](https://github.com/nexageapps/my-app-showcase/issues)
+3. 📝 **Improve Documentation** - Help make our docs better
+4. 🔧 **Submit Pull Requests** - Fix bugs or add features
+
+### Contribution Guidelines
+
+```bash
+# Fork the repository
+# Create a new branch
+git checkout -b feature/your-feature-name
+
+# Make your changes
+# Commit with clear messages
+git commit -m "Add: your feature description"
+
+# Push to your fork
+git push origin feature/your-feature-name
+
+# Open a Pull Request
+```
+
+### Code Style
+- Follow existing code patterns
+- Write meaningful commit messages
+- Add tests for new features
+- Update documentation as needed
+
+For major changes, please open an issue first to discuss what you would like to change.
 
 ## 🐛 Known Issues
 
@@ -408,11 +440,37 @@ None currently! 🎉
 
 ## 📊 Performance Metrics
 
-- **Lighthouse Score**: 95+ (Performance, Accessibility, Best Practices, SEO)
-- **First Contentful Paint**: < 1.5s
-- **Time to Interactive**: < 3.5s
-- **Mobile Friendly**: 100%
+| Metric | Score | Status |
+|--------|-------|--------|
+| 🚀 **Lighthouse Performance** | 95+ | ✅ Excellent |
+| ♿ **Accessibility** | 95+ | ✅ WCAG AA |
+| ✨ **Best Practices** | 95+ | ✅ Excellent |
+| 🔍 **SEO** | 95+ | ✅ Optimized |
+| ⚡ **First Contentful Paint** | < 1.5s | ✅ Fast |
+| 🎯 **Time to Interactive** | < 3.5s | ✅ Fast |
+| 📱 **Mobile Friendly** | 100% | ✅ Perfect |
 
 ---
 
-Made with ❤️ by NexageApps - Next Generation Mobile Applications
+## ⭐ Show Your Support
+
+If you find this project useful, please consider:
+- ⭐ Starring the repository
+- 🍴 Forking for your own projects
+- 📢 Sharing with others
+- 🐛 Reporting issues
+- 💡 Contributing improvements
+
+---
+
+<div align="center">
+
+**Made with ❤️ by [NexageApps](https://nexageapps.com)**
+
+*Next Generation Mobile Applications*
+
+[![GitHub Stars](https://img.shields.io/github/stars/nexageapps/my-app-showcase?style=social)](https://github.com/nexageapps/my-app-showcase)
+[![GitHub Forks](https://img.shields.io/github/forks/nexageapps/my-app-showcase?style=social)](https://github.com/nexageapps/my-app-showcase/fork)
+[![GitHub Watchers](https://img.shields.io/github/watchers/nexageapps/my-app-showcase?style=social)](https://github.com/nexageapps/my-app-showcase)
+
+</div>
