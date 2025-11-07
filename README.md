@@ -7,7 +7,7 @@
 [![React](https://img.shields.io/badge/React-19.2.0-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://reactjs.org/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-A modern, fully responsive React website showcasing NexageApps' mobile applications portfolio. Built with React 19 and featuring fluid typography, smooth animations, intuitive navigation, and a clean, professional design inspired by Apple and Google Material Design principles.
+A modern, fully responsive React website showcasing NexageApps's mobile applications portfolio. Built with React 19 and featuring fluid typography, smooth animations, intuitive navigation, and a clean, professional design inspired by Apple and Google Material Design principles.
 
 [View Live Demo](https://nexageapps.com) • [Report Bug](https://github.com/nexageapps/my-app-showcase/issues) • [Request Feature](https://github.com/nexageapps/my-app-showcase/issues)
 
