@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
 
 function Header({ title, subtitle }) {
   const [activeTab, setActiveTab] = useState('hero');
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +26,25 @@ function Header({ title, subtitle }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavClick = (e, sectionId) => {
+    e.preventDefault();
+    
+    if (location.pathname === '/') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
+
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>{title}</h1>
@@ -31,24 +53,28 @@ function Header({ title, subtitle }) {
         <a 
           href="#hero" 
           className={`${styles.tabLink} ${activeTab === 'hero' ? styles.active : ''}`}
+          onClick={(e) => handleNavClick(e, 'hero')}
         >
           Home
         </a>
         <a 
           href="#apps" 
           className={`${styles.tabLink} ${activeTab === 'apps' ? styles.active : ''}`}
+          onClick={(e) => handleNavClick(e, 'apps')}
         >
           Apps
         </a>
         <a 
           href="#about" 
           className={`${styles.tabLink} ${activeTab === 'about' ? styles.active : ''}`}
+          onClick={(e) => handleNavClick(e, 'about')}
         >
           About
         </a>
         <a 
           href="#contact" 
           className={`${styles.tabLink} ${activeTab === 'contact' ? styles.active : ''}`}
+          onClick={(e) => handleNavClick(e, 'contact')}
         >
           Contact
         </a>

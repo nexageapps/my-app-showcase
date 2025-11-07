@@ -2,6 +2,7 @@ import './App.css';
 import { apps } from './data/apps';
 import Header from './components/Header/Header';
 import AppCard from './components/AppCard/AppCard';
+import ScrollLink from './components/ScrollLink';
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -47,10 +48,10 @@ function App() {
       {/* Sticky Quick Nav */}
       <nav className={`quick-nav ${showScrollTop ? 'visible' : ''}`}>
         <div className="quick-nav-container">
-          <a href="#hero" className={activeSection === 'hero' ? 'active' : ''}>Home</a>
-          <a href="#apps" className={activeSection === 'apps' ? 'active' : ''}>Apps</a>
-          <a href="#about" className={activeSection === 'about' ? 'active' : ''}>About</a>
-          <a href="#contact" className={activeSection === 'contact' ? 'active' : ''}>Contact</a>
+          <ScrollLink to="hero" className={activeSection === 'hero' ? 'active' : ''}>Home</ScrollLink>
+          <ScrollLink to="apps" className={activeSection === 'apps' ? 'active' : ''}>Apps</ScrollLink>
+          <ScrollLink to="about" className={activeSection === 'about' ? 'active' : ''}>About</ScrollLink>
+          <ScrollLink to="contact" className={activeSection === 'contact' ? 'active' : ''}>Contact</ScrollLink>
         </div>
       </nav>
 
@@ -80,15 +81,15 @@ function App() {
               </div>
               
               <div className="hero-cta">
-                <a href="#qr-scan-pro" className="cta-button primary">
+                <ScrollLink to="apps" className="cta-button primary">
                   Explore Our Apps
                   <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                     <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
                   </svg>
-                </a>
-                <a href="#contact" className="cta-button secondary">
+                </ScrollLink>
+                <ScrollLink to="contact" className="cta-button secondary">
                   Get in Touch
-                </a>
+                </ScrollLink>
               </div>
             </div>
             
@@ -152,12 +153,11 @@ function App() {
           <h2 className="overview-title">Our Apps</h2>
           <div className="apps-icons-grid">
             {apps.map((app, index) => (
-              <a 
+              <ScrollLink 
                 key={app.id}
-                href={`#${app.id}`}
+                to={app.id}
                 className="app-icon-card"
                 style={{ animationDelay: `${index * 0.15}s` }}
-                aria-label={`View ${app.name} details`}
               >
                 <div className="app-icon-wrapper">
                   <img 
@@ -177,7 +177,7 @@ function App() {
                 </div>
                 <h3 className="app-icon-name">{app.name}</h3>
                 <p className="app-icon-tagline">{app.tagline}</p>
-              </a>
+              </ScrollLink>
             ))}
           </div>
         </section>
@@ -365,16 +365,16 @@ function App() {
               <div className="footer-section">
                 <h4 className="footer-heading">Our Apps</h4>
                 <ul className="footer-links">
-                  <li><a href="#qr-scan-pro">QR Scan Pro</a></li>
-                  <li><a href="#lucky-coin-flip">Lucky Coin Flip</a></li>
+                  <li><ScrollLink to="qr-scan-pro">QR Scan Pro</ScrollLink></li>
+                  <li><ScrollLink to="lucky-coin-flip">Lucky Coin Flip</ScrollLink></li>
                 </ul>
               </div>
               
               <div className="footer-section">
                 <h4 className="footer-heading">Company</h4>
                 <ul className="footer-links">
-                  <li><a href="#about">About Us</a></li>
-                  <li><a href="#contact">Contact</a></li>
+                  <li><ScrollLink to="about">About Us</ScrollLink></li>
+                  <li><ScrollLink to="contact">Contact</ScrollLink></li>
                   <li><a className="hide" href="#/careers">Careers</a></li>
                   <li><a className="hide" href="#/blog">Blog</a></li>
                 </ul>

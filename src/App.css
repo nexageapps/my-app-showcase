@@ -198,13 +198,18 @@ body {
     grid-template-columns: 1fr;
     gap: 1rem;
     max-width: 100%;
-    padding: 0 0.5rem;
+    padding: 0 1rem;
+    margin: 0 auto;
   }
   
   .app-icon-card {
     padding: 2rem 1.5rem;
     border-radius: 20px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   
   .app-icon-wrapper {
@@ -408,7 +413,10 @@ body {
     align-items: center;
     gap: 1.25rem;
     width: 100%;
+    max-width: 100%;
     order: 2;
+    padding: 0 0.5rem;
+    box-sizing: border-box;
   }
   
   .hero-title {
@@ -522,11 +530,12 @@ body {
   
   /* Quote card mobile optimization */
   .hero-quote-card {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1.25rem;
     border-radius: 20px;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    overflow: hidden;
   }
   
   .quote-icon {
@@ -539,13 +548,21 @@ body {
   }
   
   .hero-quote {
-    font-size: 1.125rem;
+    font-size: 1rem;
     line-height: 1.6;
     margin: 0 0 1rem 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
   
   .hero-quote-author {
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .quote-decoration {
+    display: none;
   }
   
   .hero-stats-mini {
