@@ -376,16 +376,16 @@ function HomePage() {
                 <ul className="footer-links">
                   <li><ScrollLink to="about">About Us</ScrollLink></li>
                   <li><ScrollLink to="contact">Contact</ScrollLink></li>
-                  <li><a className="hide" href="#/careers">Careers</a></li>
-                  <li><a className="hide" href="#/blog">Blog</a></li>
+                  <li><a className="hide" href="/careers">Careers</a></li>
+                  <li><a className="hide" href="/blog">Blog</a></li>
                 </ul>
               </div>
               
               <div className="footer-section">
                 <h4 className="footer-heading">Support</h4>
                 <ul className="footer-links">
-                  <li><a href="#/help">Help Center</a></li>
-                  <li><a href="#/faq">FAQ</a></li>
+                  <li><a href="/help">Help Center</a></li>
+                  <li><a href="/faq">FAQ</a></li>
                   <li><a href="mailto:nexageapps@gmail.com">Email Support</a></li>
                 </ul>
               </div>
@@ -394,10 +394,10 @@ function HomePage() {
                 <h4 className="footer-heading">Resources</h4>
                 <ul className="footer-links">
                  
-                  <li><a href="#/privacypolicy">Privacy Policy</a></li>
-                  <li><a href="#/terms">Terms of Service</a></li>
-                  <li><a href="#/cookies">Cookie Policy</a></li>
-                   <li><a className="hide" href="#/learn-ai">Learn AI 🎓</a></li>
+                  <li><a href="/privacypolicy">Privacy Policy</a></li>
+                  <li><a href="/terms">Terms of Service</a></li>
+                  <li><a href="/cookies">Cookie Policy</a></li>
+                   <li><a className="hide" href="/learn-ai">Learn AI 🎓</a></li>
                 </ul>
               </div>
             </div>
