@@ -20,7 +20,7 @@ export const apps = [
       '🚫 100% ad-free'
     ],
     images: [
-      require('../components/Images/QRScanPro/1.png')
+      require('../components/Images/QRScanPro/QR.PNG')
     ],
     appStoreUrl: 'https://apps.apple.com/us/app/qr-scan-pro/id1624446995',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.qrscanpro'

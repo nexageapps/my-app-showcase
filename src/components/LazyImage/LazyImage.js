@@ -87,6 +87,16 @@ const LazyImage = ({
     </div>
   );
 
+  // Handle both string paths and module objects from require()
+  const imageSrc = typeof src === 'string' ? src : src?.default || src;
+
+  // Debug: log the image source
+  useEffect(() => {
+    if (imageSrc) {
+      console.log('LazyImage src:', imageSrc, 'Type:', typeof imageSrc);
+    }
+  }, [imageSrc]);
+
   return (
     <div 
       ref={imgRef} 
@@ -102,29 +112,16 @@ const LazyImage = ({
       {hasError && renderPlaceholder()}
 
       {/* Load image only when in view */}
-      {isInView && !hasError && (
-        <picture>
-          {/* WebP format with fallback */}
-          {src.endsWith('.png') || src.endsWith('.jpg') || src.endsWith('.jpeg') ? (
-            <source 
-              type="image/webp" 
-              srcSet={srcSet || src.replace(/\.(png|jpg|jpeg)$/i, '.webp')}
-              sizes={sizes || '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'}
-            />
-          ) : null}
-          
-          <img
-            src={src}
-            srcSet={srcSet}
-            sizes={sizes || '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'}
-            alt={alt}
-            className={`${styles.image} ${isLoaded ? styles.loaded : styles.loading}`}
-            onLoad={handleImageLoad}
-            onError={handleImageError}
-            loading="lazy"
-            {...props}
-          />
-        </picture>
+      {isInView && !hasError && imageSrc && (
+        <img
+          src={imageSrc}
+          alt={alt}
+          className={`${styles.image} ${isLoaded ? styles.loaded : styles.loading}`}
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+          loading="lazy"
+          {...props}
+        />
       )}
     </div>
   );

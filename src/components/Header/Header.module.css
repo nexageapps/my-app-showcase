@@ -4,6 +4,8 @@
   background: #f8f9fa;
   position: relative;
   z-index: 10;
+  /* Add safe area inset support for notched devices */
+  padding-top: max(2rem, env(safe-area-inset-top));
 }
 
 .title {
@@ -133,6 +135,8 @@
 @media (max-width: 767px) {
   .header {
     padding: 1rem 0.875rem 0.875rem;
+    /* Add safe area inset support for notched devices */
+    padding-top: max(1rem, env(safe-area-inset-top));
   }
 
   .title {
