@@ -15,7 +15,7 @@ function HomePage() {
       setShowScrollTop(window.scrollY > 200);
 
       // Update active section for navigation
-      const sections = ['hero', 'apps', 'about', 'contact'];
+      const sections = ['hero', 'apps', 'about', 'blog', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -52,6 +52,7 @@ function HomePage() {
           <ScrollLink to="hero" className={activeSection === 'hero' ? 'active' : ''}>Home</ScrollLink>
           <ScrollLink to="apps" className={activeSection === 'apps' ? 'active' : ''}>Apps</ScrollLink>
           <ScrollLink to="about" className={activeSection === 'about' ? 'active' : ''}>About</ScrollLink>
+          <ScrollLink to="blog" className={activeSection === 'blog' ? 'active' : ''}>Blog</ScrollLink>
           <ScrollLink to="contact" className={activeSection === 'contact' ? 'active' : ''}>Contact</ScrollLink>
         </div>
       </nav>
@@ -281,6 +282,100 @@ function HomePage() {
           </div>
         </section>
 
+        {/* Our Story Section */}
+        <section className="story-section" aria-label="Our story">
+          <div className="story-content">
+            <h2 className="section-title">Our Story</h2>
+            <p className="story-text">
+              Discover the journey behind NexageApps and why we're passionate about building ad-free, 
+              simple applications that put users first.
+            </p>
+            <a 
+              href="https://medium.com/@arjunkarthik1991/why-we-build-ad-free-simple-apps-the-story-behind-qr-scan-pro-and-lucky-flipper-94e6138b3264" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="story-link"
+            >
+              <div className="story-card">
+                <div className="story-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="40" height="40">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                  </svg>
+                </div>
+                <div className="story-details">
+                  <h3 className="story-title">Why We Build Ad-Free, Simple Apps</h3>
+                  <p className="story-description">
+                    The story behind QR Scan Pro and Lucky Flipper
+                  </p>
+                  <span className="story-cta">
+                    Read on Medium
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                      <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        {/* Blog Section */}
+        <section id="blog" className="blog-section" aria-label="Blog posts">
+          <div className="blog-content">
+            <h2 className="section-title">From Our Blog</h2>
+            <p className="blog-intro">
+              Insights on development, AI, and building better applications.
+            </p>
+            <div className="blog-grid">
+              <a 
+                href="https://community.sap.com/t5/technology-blog-posts-by-members/be-a-cockroach-a-simple-guide-to-ai-and-sap-full-stack-development-part-i/ba-p/13696633" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="blog-card"
+              >
+                <div className="blog-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+                    <path d="M9 2v2H7v2H5v2H3v2H1v2h2v2h2v2h2v2h2v2h2v-2h2v-2h2v-2h2v-2h2v-2h-2V8h-2V6h-2V4h-2V2H9m0 4h2v2h2v2h2v2h-2v2h-2v2H9v-2H7v-2H5V8h2V6h2V4z"/>
+                  </svg>
+                </div>
+                <h3 className="blog-title">Be a Cockroach: A Simple Guide to AI and SAP Full-Stack Development</h3>
+                <p className="blog-excerpt">
+                  Part I of a comprehensive guide to modern development practices
+                </p>
+                <span className="blog-read-more">
+                  Read more
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                  </svg>
+                </span>
+              </a>
+
+              <a 
+                href="https://community.sap.com/t5/technology-blog-posts-by-members/audit-ready-monitoring-in-sap-integration-suite-cpi-automating-logs-and/ba-p/13608900" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="blog-card"
+              >
+                <div className="blog-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </div>
+                <h3 className="blog-title">Audit Ready Monitoring in SAP Integration Suite with AI powered insights</h3>
+                <p className="blog-excerpt">
+                  Automating logs and monitoring with intelligent insights
+                </p>
+                <span className="blog-read-more">
+                  Read more
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                  </svg>
+                </span>
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* Contact Section */}
         <section className="contact-section" id="contact" aria-label="Contact us">
           <div className="contact-content">
@@ -387,7 +482,7 @@ function HomePage() {
                   <li><ScrollLink to="about">About Us</ScrollLink></li>
                   <li><ScrollLink to="contact">Contact</ScrollLink></li>
                   <li><a className="hide" href="/careers">Careers</a></li>
-                  <li><a className="hide" href="/blog">Blog</a></li>
+                  <li><ScrollLink to="blog">Blog</ScrollLink></li>
                 </ul>
               </div>
               

@@ -386,7 +386,7 @@ export default App;
                   <li><ScrollLink to="about">About Us</ScrollLink></li>
                   <li><ScrollLink to="contact">Contact</ScrollLink></li>
                   <li><a className="hide" href="#/careers">Careers</a></li>
-                  <li><a className="hide" href="#/blog">Blog</a></li>
+                  <li><a  href="#/blog">Blog</a></li>
                 </ul>
               </div>
               
