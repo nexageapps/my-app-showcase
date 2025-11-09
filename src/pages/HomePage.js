@@ -67,6 +67,16 @@ function HomePage() {
                 </svg>
                 <span>Trusted by 45K+ Users</span>
               </div>
+              <div className="hero-stats-mini-mobile">
+                <div className="stat-mini">
+                  <span className="stat-mini-number">10K+</span>
+                  <span className="stat-mini-label">Happy Users</span>
+                </div>
+                <div className="stat-mini">
+                  <span className="stat-mini-number">4.4★</span>
+                  <span className="stat-mini-label">App Rating</span>
+                </div>
+              </div>
               <h1 className="hero-title">
                 Innovative Apps for <span className="hero-highlight">Modern Life</span>
               </h1>
