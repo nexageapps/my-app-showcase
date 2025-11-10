@@ -1,20 +1,32 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import './LegalPages.css';
+import SEO from '../utils/seo/SEO';
+import { getSEOConfig } from '../utils/seo/seoConfig';
 
 function CookiePolicy() {
+  const seoConfig = getSEOConfig('cookiePolicy');
+
   return (
     <div className="legal-page">
+      <SEO
+        title={seoConfig.title}
+        description={seoConfig.description}
+        keywords={seoConfig.keywords}
+        canonical={seoConfig.canonical}
+        ogImage={seoConfig.ogImage}
+        ogType={seoConfig.ogType}
+      />
       <div className="legal-container">
-        <div className="legal-header">
+        <header className="legal-header">
           <h1>Cookie Policy 🍪</h1>
           <p className="legal-subtitle">Spoiler: We don't use cookies!</p>
           <p className="legal-date">Last updated: November 2024</p>
-        </div>
+        </header>
 
-        <div className="legal-content">
-          <section className="legal-section">
-            <div className="section-icon">🎉</div>
-            <h2>The Best Cookie Policy Ever</h2>
+        <main className="legal-content">
+          <section className="legal-section" aria-labelledby="best-policy-title">
+            <div className="section-icon" aria-hidden="true">🎉</div>
+            <h2 id="best-policy-title">The Best Cookie Policy Ever</h2>
             <p>
               Here's the thing: <strong>We don't use cookies.</strong> Not tracking cookies, not analytics cookies, 
               not any kind of cookies. Our apps are completely offline and don't connect to any servers.
@@ -24,9 +36,9 @@ function CookiePolicy() {
             </p>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">🚫</div>
-            <h2>What We DON'T Do</h2>
+          <section className="legal-section" aria-labelledby="dont-do-title">
+            <div className="section-icon" aria-hidden="true">🚫</div>
+            <h2 id="dont-do-title">What We DON'T Do</h2>
             <ul className="simple-list">
               <li>No tracking cookies</li>
               <li>No analytics cookies</li>
@@ -36,18 +48,18 @@ function CookiePolicy() {
             </ul>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">📱</div>
-            <h2>Why No Cookies?</h2>
+          <section className="legal-section" aria-labelledby="why-no-cookies-title">
+            <div className="section-icon" aria-hidden="true">📱</div>
+            <h2 id="why-no-cookies-title">Why No Cookies?</h2>
             <p>
               Our apps work completely offline. They don't need to "remember" you across sessions 
               because everything is stored locally on your device. No servers = no cookies needed!
             </p>
           </section>
 
-          <section className="hide legal-section">
-            <div className="section-icon">🌐</div>
-            <h2>What About This Website?</h2>
+          <section className="hide legal-section" aria-labelledby="website-title">
+            <div className="section-icon" aria-hidden="true">🌐</div>
+            <h2 id="website-title">What About This Website?</h2>
             <p>
               This website (nexageapps.com) also doesn't use cookies! We don't track visitors, 
               collect analytics, or use any third-party services that would require cookies.
@@ -57,25 +69,29 @@ function CookiePolicy() {
             </p>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">💬</div>
-            <h2>Questions?</h2>
+          <section className="legal-section" aria-labelledby="cookie-questions-title">
+            <div className="section-icon" aria-hidden="true">💬</div>
+            <h2 id="cookie-questions-title">Questions?</h2>
             <p>
               If you have any questions about our cookie policy (or lack thereof!), feel free to 
-              email us at <a href="mailto:nexageapps@gmail.com">nexageapps@gmail.com</a>
+              email us at <a href="mailto:nexageapps@gmail.com">nexageapps@gmail.com</a> or visit our{' '}
+              <Link to="/help">Help Center</Link>.
             </p>
           </section>
 
-          <div className="legal-footer">
+          <aside className="legal-footer">
             <p>
               <strong>TL;DR:</strong> No cookies here! Your privacy is safe with us. 🛡️
             </p>
-          </div>
-        </div>
+            <p>
+              Learn more about our <Link to="/privacy">privacy policy</Link> and <Link to="/terms">terms of service</Link>, or explore our <Link to="/">mobile apps</Link>.
+            </p>
+          </aside>
+        </main>
 
-        <div className="back-home">
-          <a href="/">← Back to Home</a>
-        </div>
+        <nav className="back-home">
+          <Link to="/">← Back to Home</Link>
+        </nav>
       </div>
     </div>
   );

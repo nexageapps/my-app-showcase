@@ -70,6 +70,8 @@ const ImageGallery = ({ images = [], appName }) => {
               alt={`${appName} screenshot ${index + 1} of ${imageCount}`}
               className={styles.image}
               aspectRatio="9 / 19.5"
+              width="220"
+              height="476"
               sizes="(max-width: 640px) 160px, (max-width: 1023px) 190px, 220px"
               onError={() => handleImageError(index)}
             />

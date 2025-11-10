@@ -1,20 +1,32 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import './LegalPages.css';
+import SEO from '../utils/seo/SEO';
+import { getSEOConfig } from '../utils/seo/seoConfig';
 
 function PrivacyPolicy() {
+  const seoConfig = getSEOConfig('privacyPolicy');
+
   return (
     <div className="legal-page">
+      <SEO
+        title={seoConfig.title}
+        description={seoConfig.description}
+        keywords={seoConfig.keywords}
+        canonical={seoConfig.canonical}
+        ogImage={seoConfig.ogImage}
+        ogType={seoConfig.ogType}
+      />
       <div className="legal-container">
-        <div className="legal-header">
+        <header className="legal-header">
           <h1>Privacy Policy 🔒</h1>
           <p className="legal-subtitle">Your privacy matters. A lot.</p>
           <p className="legal-date">Last updated: November 2024</p>
-        </div>
+        </header>
 
-        <div className="legal-content">
-          <section className="legal-section">
-            <div className="section-icon">🎉</div>
-            <h2>The Good News First!</h2>
+        <main className="legal-content">
+          <section className="legal-section" aria-labelledby="good-news-title">
+            <div className="section-icon" aria-hidden="true">🎉</div>
+            <h2 id="good-news-title">The Good News First!</h2>
             <p>
               Here's the best part: <strong>We don't collect your data. Period.</strong> 
               Both QR Scan Pro and Lucky Coin Flip are completely offline apps. 
@@ -22,9 +34,9 @@ function PrivacyPolicy() {
             </p>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">📱</div>
-            <h2>What This Means for You</h2>
+          <section className="legal-section" aria-labelledby="what-means-title">
+            <div className="section-icon" aria-hidden="true">📱</div>
+            <h2 id="what-means-title">What This Means for You</h2>
             <div className="feature-list">
               <div className="feature-item">
                 <span className="check">✓</span>
@@ -57,9 +69,9 @@ function PrivacyPolicy() {
             </div>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">💾</div>
-            <h2>What Gets Stored on Your Device</h2>
+          <section className="legal-section" aria-labelledby="stored-data-title">
+            <div className="section-icon" aria-hidden="true">💾</div>
+            <h2 id="stored-data-title">What Gets Stored on Your Device</h2>
             <p>
               Some data needs to be saved locally so the apps can actually work. Here's what stays on your device:
             </p>
@@ -72,9 +84,9 @@ function PrivacyPolicy() {
             </p>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">📸</div>
-            <h2>Camera & Photo Access</h2>
+          <section className="legal-section" aria-labelledby="camera-access-title">
+            <div className="section-icon" aria-hidden="true">📸</div>
+            <h2 id="camera-access-title">Camera & Photo Access</h2>
             <p>
               <strong>QR Scan Pro</strong> needs camera access to scan QR codes (obviously! 😄). 
               We also ask for photo library access so you can scan QR codes from images you've saved.
@@ -85,9 +97,9 @@ function PrivacyPolicy() {
             </p>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">🔐</div>
-            <h2>Security</h2>
+          <section className="legal-section" aria-labelledby="security-title">
+            <div className="section-icon" aria-hidden="true">🔐</div>
+            <h2 id="security-title">Security</h2>
             <p>
               Since everything stays on your device, your data is as secure as your device is. 
               We recommend using your device's built-in security features like passcodes, 
@@ -95,9 +107,9 @@ function PrivacyPolicy() {
             </p>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">👶</div>
-            <h2>Children's Privacy</h2>
+          <section className="legal-section" aria-labelledby="children-privacy-title">
+            <div className="section-icon" aria-hidden="true">👶</div>
+            <h2 id="children-privacy-title">Children's Privacy</h2>
             <p>
               Our apps are safe for everyone, including kids. Since we don't collect any data, 
               there's nothing to worry about. Parents can feel confident letting their children 
@@ -105,9 +117,9 @@ function PrivacyPolicy() {
             </p>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">🔄</div>
-            <h2>Changes to This Policy</h2>
+          <section className="legal-section" aria-labelledby="changes-policy-title">
+            <div className="section-icon" aria-hidden="true">🔄</div>
+            <h2 id="changes-policy-title">Changes to This Policy</h2>
             <p>
               If we ever change how we handle privacy (spoiler: we won't start collecting data), 
               we'll update this page and let you know through an app update. We'll always keep 
@@ -115,27 +127,31 @@ function PrivacyPolicy() {
             </p>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">💬</div>
-            <h2>Questions?</h2>
+          <section className="legal-section" aria-labelledby="questions-title">
+            <div className="section-icon" aria-hidden="true">💬</div>
+            <h2 id="questions-title">Questions?</h2>
             <p>
               We're real people who actually read emails! If you have any questions about privacy 
               or anything else, reach out to us at{' '}
-              <a href="mailto:nexageapps@gmail.com">nexageapps@gmail.com</a>
+              <a href="mailto:nexageapps@gmail.com">nexageapps@gmail.com</a>. You can also visit our{' '}
+              <Link to="/help">Help Center</Link> or check our <Link to="/faq">FAQ</Link> for quick answers.
             </p>
           </section>
 
-          <div className="legal-footer">
+          <aside className="legal-footer">
             <p>
               <strong>TL;DR:</strong> We don't collect your data. Everything stays on your device. 
               You're in complete control. That's how it should be. 🎯
             </p>
-          </div>
-        </div>
+            <p>
+              Learn more about our <Link to="/terms">terms of service</Link> or explore our <Link to="/">mobile apps</Link>.
+            </p>
+          </aside>
+        </main>
 
-        <div className="back-home">
-          <a href="/">← Back to Home</a>
-        </div>
+        <nav className="back-home">
+          <Link to="/">← Back to Home</Link>
+        </nav>
       </div>
     </div>
   );

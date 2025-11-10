@@ -9,6 +9,8 @@ const LazyImage = ({
   alt, 
   className = '', 
   aspectRatio = '9 / 19.5',
+  width,
+  height,
   onLoad,
   onError,
   ...props 
@@ -90,13 +92,6 @@ const LazyImage = ({
   // Handle both string paths and module objects from require()
   const imageSrc = typeof src === 'string' ? src : src?.default || src;
 
-  // Debug: log the image source
-  useEffect(() => {
-    if (imageSrc) {
-      console.log('LazyImage src:', imageSrc, 'Type:', typeof imageSrc);
-    }
-  }, [imageSrc]);
-
   return (
     <div 
       ref={imgRef} 
@@ -115,7 +110,11 @@ const LazyImage = ({
       {isInView && !hasError && imageSrc && (
         <img
           src={imageSrc}
+          srcSet={srcSet}
+          sizes={sizes}
           alt={alt}
+          width={width}
+          height={height}
           className={`${styles.image} ${isLoaded ? styles.loaded : styles.loading}`}
           onLoad={handleImageLoad}
           onError={handleImageError}

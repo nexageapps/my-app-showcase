@@ -1,20 +1,32 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import './LegalPages.css';
+import SEO from '../utils/seo/SEO';
+import { getSEOConfig } from '../utils/seo/seoConfig';
 
 function TermsOfService() {
+  const seoConfig = getSEOConfig('termsOfService');
+
   return (
     <div className="legal-page">
+      <SEO
+        title={seoConfig.title}
+        description={seoConfig.description}
+        keywords={seoConfig.keywords}
+        canonical={seoConfig.canonical}
+        ogImage={seoConfig.ogImage}
+        ogType={seoConfig.ogType}
+      />
       <div className="legal-container">
-        <div className="legal-header">
+        <header className="legal-header">
           <h1>Terms of Service 📜</h1>
           <p className="legal-subtitle">The boring legal stuff, made less boring</p>
           <p className="legal-date">Last updated: November 2024</p>
-        </div>
+        </header>
 
-        <div className="legal-content">
-          <section className="legal-section">
-            <div className="section-icon">👋</div>
-            <h2>Welcome!</h2>
+        <main className="legal-content">
+          <section className="legal-section" aria-labelledby="welcome-title">
+            <div className="section-icon" aria-hidden="true">👋</div>
+            <h2 id="welcome-title">Welcome!</h2>
             <p>
               Thanks for choosing NexageApps! We've tried to make these terms as human-friendly 
               as possible. By using our apps (QR Scan Pro and Lucky Coin Flip), you're agreeing 
@@ -22,9 +34,9 @@ function TermsOfService() {
             </p>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">🎯</div>
-            <h2>What You're Getting</h2>
+          <section className="legal-section" aria-labelledby="getting-title">
+            <div className="section-icon" aria-hidden="true">🎯</div>
+            <h2 id="getting-title">What You're Getting</h2>
             <p>
               Our apps are designed to make your life easier:
             </p>
@@ -38,9 +50,9 @@ function TermsOfService() {
             </p>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">✅</div>
-            <h2>What You Can Do</h2>
+          <section className="legal-section" aria-labelledby="can-do-title">
+            <div className="section-icon" aria-hidden="true">✅</div>
+            <h2 id="can-do-title">What You Can Do</h2>
             <div className="feature-list">
               <div className="feature-item">
                 <span className="check">✓</span>
@@ -66,9 +78,9 @@ function TermsOfService() {
             </div>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">🚫</div>
-            <h2>What You Can't Do</h2>
+          <section className="legal-section" aria-labelledby="cant-do-title">
+            <div className="section-icon" aria-hidden="true">🚫</div>
+            <h2 id="cant-do-title">What You Can't Do</h2>
             <p>
               Just a few common-sense rules to keep things fair for everyone:
             </p>
@@ -83,9 +95,9 @@ function TermsOfService() {
             </p>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">🛡️</div>
-            <h2>Disclaimer (The Legal Stuff)</h2>
+          <section className="legal-section" aria-labelledby="disclaimer-title">
+            <div className="section-icon" aria-hidden="true">🛡️</div>
+            <h2 id="disclaimer-title">Disclaimer (The Legal Stuff)</h2>
             <p>
               We work hard to make our apps reliable and bug-free, but we're human. 
               Here's the honest truth:
@@ -98,9 +110,9 @@ function TermsOfService() {
             </ul>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">🔄</div>
-            <h2>Updates & Changes</h2>
+          <section className="legal-section" aria-labelledby="updates-title">
+            <div className="section-icon" aria-hidden="true">🔄</div>
+            <h2 id="updates-title">Updates & Changes</h2>
             <p>
               We're constantly improving our apps with new features and bug fixes. When we release 
               updates, you'll see them in the App Store or Google Play. We recommend keeping your 
@@ -112,9 +124,9 @@ function TermsOfService() {
             </p>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">⚖️</div>
-            <h2>Intellectual Property</h2>
+          <section className="legal-section" aria-labelledby="ip-title">
+            <div className="section-icon" aria-hidden="true">⚖️</div>
+            <h2 id="ip-title">Intellectual Property</h2>
             <p>
               All the code, designs, graphics, and content in our apps belong to NexageApps. 
               We've put a lot of love and late nights into creating these apps, so please respect 
@@ -122,9 +134,9 @@ function TermsOfService() {
             </p>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">🌍</div>
-            <h2>Where These Terms Apply</h2>
+          <section className="legal-section" aria-labelledby="jurisdiction-title">
+            <div className="section-icon" aria-hidden="true">🌍</div>
+            <h2 id="jurisdiction-title">Where These Terms Apply</h2>
             <p>
               Our apps are available worldwide! These terms are governed by the laws of the 
               United States, but they apply to everyone, everywhere. We're all part of the 
@@ -132,9 +144,9 @@ function TermsOfService() {
             </p>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">🚪</div>
-            <h2>Termination</h2>
+          <section className="legal-section" aria-labelledby="termination-title">
+            <div className="section-icon" aria-hidden="true">🚪</div>
+            <h2 id="termination-title">Termination</h2>
             <p>
               You can stop using our apps anytime by simply deleting them from your device. 
               No hard feelings! We hope you'll come back, but we understand if our apps aren't 
@@ -146,32 +158,36 @@ function TermsOfService() {
             </p>
           </section>
 
-          <section className="legal-section">
-            <div className="section-icon">📧</div>
-            <h2>Contact Us</h2>
+          <section className="legal-section" aria-labelledby="contact-title">
+            <div className="section-icon" aria-hidden="true">📧</div>
+            <h2 id="contact-title">Contact Us</h2>
             <p>
               Got questions about these terms? Want to report a problem? Just want to chat? 
               We're here for you:
             </p>
             <p>
-              Email us at <a href="mailto:nexageapps@gmail.com">nexageapps@gmail.com</a>
+              Email us at <a href="mailto:nexageapps@gmail.com">nexageapps@gmail.com</a> or visit our{' '}
+              <Link to="/help">Help Center</Link> for more support options.
             </p>
             <p>
               We actually read and respond to every email. Promise! 💌
             </p>
           </section>
 
-          <div className="legal-footer">
+          <aside className="legal-footer">
             <p>
               <strong>TL;DR:</strong> Use our apps freely and responsibly. Don't be a jerk. 
               We'll keep making awesome apps. Everyone wins! 🎉
             </p>
-          </div>
-        </div>
+            <p>
+              Check out our <Link to="/privacy">privacy policy</Link>, browse our <Link to="/faq">FAQ</Link>, or explore our <Link to="/">mobile apps</Link>.
+            </p>
+          </aside>
+        </main>
 
-        <div className="back-home">
-          <a href="/">← Back to Home</a>
-        </div>
+        <nav className="back-home">
+          <Link to="/">← Back to Home</Link>
+        </nav>
       </div>
     </div>
   );

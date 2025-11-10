@@ -115,6 +115,13 @@
   border-radius: 12px;
 }
 
+.faq-question h3 {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: inherit;
+}
+
 .faq-question:hover {
   background: #edf2f7;
 }

@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './FAQ.css';
+import SEO from '../utils/seo/SEO';
+import { getSEOConfig } from '../utils/seo/seoConfig';
+import { generateFAQSchema } from '../utils/seo/schemas';
 
 function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
@@ -132,24 +136,47 @@ function FAQ() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  // Get SEO configuration
+  const seoConfig = getSEOConfig('faq');
+
+  // Flatten all FAQ items for schema
+  const allFAQItems = faqs.flatMap(category =>
+    category.questions.map(item => ({
+      question: item.q,
+      answer: item.a
+    }))
+  );
+
+  // Generate FAQ schema
+  const faqSchema = generateFAQSchema(allFAQItems);
+
   return (
     <div className="faq-page">
+      <SEO
+        title={seoConfig.title}
+        description={seoConfig.description}
+        keywords={seoConfig.keywords}
+        canonical={seoConfig.canonical}
+        ogImage={seoConfig.ogImage}
+        ogType={seoConfig.ogType}
+        structuredData={faqSchema}
+      />
       <div className="faq-container">
-        <div className="faq-header">
+        <header className="faq-header">
           <h1>Frequently Asked Questions 💬</h1>
           <p className="faq-subtitle">Got questions? We've got answers!</p>
           <p className="faq-description">
-            Can't find what you're looking for? Drop us an email at{' '}
+            Can't find what you're looking for? Visit our <Link to="/help">Help Center</Link> or drop us an email at{' '}
             <a href="mailto:nexageapps@gmail.com">nexageapps@gmail.com</a>
           </p>
-        </div>
+        </header>
 
-        <div className="faq-content">
+        <main className="faq-content">
           {faqs.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="faq-category">
+            <section key={categoryIndex} className="faq-category" aria-labelledby={`category-${categoryIndex}-title`}>
               <div className="category-header">
-                <span className="category-icon">{category.icon}</span>
-                <h2 className="category-title">{category.category}</h2>
+                <span className="category-icon" aria-hidden="true">{category.icon}</span>
+                <h2 id={`category-${categoryIndex}-title`} className="category-title">{category.category}</h2>
               </div>
               
               <div className="questions-list">
@@ -158,45 +185,51 @@ function FAQ() {
                   const isOpen = openIndex === index;
                   
                   return (
-                    <div key={questionIndex} className={`faq-item ${isOpen ? 'open' : ''}`}>
+                    <article key={questionIndex} className={`faq-item ${isOpen ? 'open' : ''}`}>
                       <button
                         className="faq-question"
                         onClick={() => toggleQuestion(categoryIndex, questionIndex)}
+                        aria-expanded={isOpen}
+                        aria-controls={`answer-${index}`}
                       >
-                        <span>{item.q}</span>
+                        <h3>{item.q}</h3>
                         <svg
                           className="faq-icon"
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
                           strokeWidth="2"
+                          aria-hidden="true"
                         >
                           <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                       </button>
-                      <div className="faq-answer">
+                      <div id={`answer-${index}`} className="faq-answer">
                         <p>{item.a}</p>
                       </div>
-                    </div>
+                    </article>
                   );
                 })}
               </div>
-            </div>
+            </section>
           ))}
-        </div>
+        </main>
 
-        <div className="faq-footer">
-          <h3>Still have questions? 🤔</h3>
+        <aside className="faq-footer">
+          <h2>Still have questions? 🤔</h2>
           <p>
-            We're here to help! Reach out to us at{' '}
+            We're here to help! Visit our <Link to="/help">Help Center</Link> for more resources, check out our <Link to="/">mobile apps</Link>, or reach out to us at{' '}
             <a href="mailto:nexageapps@gmail.com">nexageapps@gmail.com</a>
             {' '}and we'll get back to you faster than you can flip a coin! 🪙
           </p>
-        </div>
+          <p>
+            Learn more about our <Link to="/privacy">privacy policy</Link> and <Link to="/terms">terms of service</Link>.
+          </p>
+        </aside>
 
-        <div className="back-home">
-          <a href="/">← Back to Home</a>
-        </div>
+        <nav className="back-home">
+          <Link to="/">← Back to Home</Link>
+        </nav>
       </div>
     </div>
   );
