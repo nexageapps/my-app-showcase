@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import './LegalPages.css';
 import SEO from '../utils/seo/SEO';
 import { getSEOConfig } from '../utils/seo/seoConfig';
+import { trackEmailClick } from '../utils/analytics';
 
 function TermsOfService() {
   const seoConfig = getSEOConfig('termsOfService');
@@ -166,7 +167,12 @@ function TermsOfService() {
               We're here for you:
             </p>
             <p>
-              Email us at <a href="mailto:nexageapps@gmail.com">nexageapps@gmail.com</a> or visit our{' '}
+              Email us at <a 
+                href="mailto:nexageapps@gmail.com"
+                onClick={() => trackEmailClick('nexageapps@gmail.com', 'terms_of_service')}
+              >
+                nexageapps@gmail.com
+              </a> or visit our{' '}
               <Link to="/help">Help Center</Link> for more support options.
             </p>
             <p>

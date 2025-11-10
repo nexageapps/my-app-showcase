@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import './NotFound.css';
 import SEO from '../utils/seo/SEO';
+import { trackEmailClick } from '../utils/analytics';
 
 function NotFound() {
   return (
@@ -72,7 +73,11 @@ function NotFound() {
                 <p>Our terms and conditions</p>
               </Link>
               
-              <a href="mailto:nexageapps@gmail.com" className="popular-page-card">
+              <a 
+                href="mailto:nexageapps@gmail.com" 
+                className="popular-page-card"
+                onClick={() => trackEmailClick('nexageapps@gmail.com', '404_page')}
+              >
                 <div className="page-icon" aria-hidden="true">📧</div>
                 <h3>Contact Us</h3>
                 <p>Get in touch with support</p>
@@ -83,7 +88,12 @@ function NotFound() {
           <aside className="not-found-tip">
             <p>
               💡 <strong>Tip:</strong> If you think this page should exist, please{' '}
-              <a href="mailto:nexageapps@gmail.com">let us know</a> so we can fix it!
+              <a 
+                href="mailto:nexageapps@gmail.com"
+                onClick={() => trackEmailClick('nexageapps@gmail.com', '404_tip')}
+              >
+                let us know
+              </a> so we can fix it!
             </p>
           </aside>
         </div>

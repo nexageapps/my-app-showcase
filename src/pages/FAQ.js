@@ -4,6 +4,7 @@ import './FAQ.css';
 import SEO from '../utils/seo/SEO';
 import { getSEOConfig } from '../utils/seo/seoConfig';
 import { generateFAQSchema } from '../utils/seo/schemas';
+import { trackEmailClick } from '../utils/analytics';
 
 function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
@@ -167,7 +168,12 @@ function FAQ() {
           <p className="faq-subtitle">Got questions? We've got answers!</p>
           <p className="faq-description">
             Can't find what you're looking for? Visit our <Link to="/help">Help Center</Link> or drop us an email at{' '}
-            <a href="mailto:nexageapps@gmail.com">nexageapps@gmail.com</a>
+            <a 
+              href="mailto:nexageapps@gmail.com"
+              onClick={() => trackEmailClick('nexageapps@gmail.com', 'faq_header')}
+            >
+              nexageapps@gmail.com
+            </a>
           </p>
         </header>
 
@@ -219,7 +225,12 @@ function FAQ() {
           <h2>Still have questions? 🤔</h2>
           <p>
             We're here to help! Visit our <Link to="/help">Help Center</Link> for more resources, check out our <Link to="/">mobile apps</Link>, or reach out to us at{' '}
-            <a href="mailto:nexageapps@gmail.com">nexageapps@gmail.com</a>
+            <a 
+              href="mailto:nexageapps@gmail.com"
+              onClick={() => trackEmailClick('nexageapps@gmail.com', 'faq_footer')}
+            >
+              nexageapps@gmail.com
+            </a>
             {' '}and we'll get back to you faster than you can flip a coin! 🪙
           </p>
           <p>

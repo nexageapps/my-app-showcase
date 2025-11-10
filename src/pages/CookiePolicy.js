@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import './LegalPages.css';
 import SEO from '../utils/seo/SEO';
 import { getSEOConfig } from '../utils/seo/seoConfig';
+import { trackEmailClick } from '../utils/analytics';
 
 function CookiePolicy() {
   const seoConfig = getSEOConfig('cookiePolicy');
@@ -74,7 +75,12 @@ function CookiePolicy() {
             <h2 id="cookie-questions-title">Questions?</h2>
             <p>
               If you have any questions about our cookie policy (or lack thereof!), feel free to 
-              email us at <a href="mailto:nexageapps@gmail.com">nexageapps@gmail.com</a> or visit our{' '}
+              email us at <a 
+                href="mailto:nexageapps@gmail.com"
+                onClick={() => trackEmailClick('nexageapps@gmail.com', 'cookie_policy')}
+              >
+                nexageapps@gmail.com
+              </a> or visit our{' '}
               <Link to="/help">Help Center</Link>.
             </p>
           </section>
